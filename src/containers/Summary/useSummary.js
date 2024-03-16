@@ -10,6 +10,9 @@ import {
   getTotalPrice,
   getPaystackTotal,
 } from "../../helpers";
+import {
+  setSuccessResponseData,
+} from "../../store/bookings/slice";
 
 export const useSummary = ({
   intentions,
@@ -18,6 +21,8 @@ export const useSummary = ({
   handleNext,
 }) => {
   const { enqueueSnackbar } = useSnackbar();
+
+  const dispatch = useDispatch();
 
   const [openLoader, setOpenLoader] = useState(false);
 
@@ -174,7 +179,7 @@ export const useSummary = ({
           ),
         })),
       })
-      .then(() => {
+      .then(({ data }) => {
         setOpenLoader(false);
 
         enqueueSnackbar(
@@ -182,6 +187,15 @@ export const useSummary = ({
             variant: "success",
             message: "Booking(s) created successfully",
             title: "Success",
+          })
+        );
+
+        dispatch(
+          setSuccessResponseData({
+            bookedByName: { value: data.name },
+            phoneNumber: { value: data.phoneNumber },
+            email: { value: data.email },
+            amountPaid: { value: data.amountPaid },
           })
         );
 
