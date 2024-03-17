@@ -1,11 +1,14 @@
+import { useState } from "react";
+import { createBookedBy, createIntention, validateInputs } from "../../helpers";
+
 export const useBooking = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   const [intentions, setIntentions] = useState([]);
 
-  const [bookedByDetails, setBookedByDetails] = useState(...createBookedBy());
+  const [bookedByDetails, setBookedByDetails] = useState(createBookedBy());
 
-  const [intention, setIntention] = useState(...createIntention());
+  const [intention, setIntention] = useState(createIntention());
 
   const handleIntentionInputChange = (e) => {
     const { name, value } = e.target;
@@ -46,6 +49,12 @@ export const useBooking = () => {
     setIntentions(existingIntentions);
   };
 
+  const handleDeleteIntention = (id) => {
+    setIntentions(
+      intentions.filter((currIntention) => currIntention.id !== id)
+    );
+  };
+
   const handleSave = () => {
     const { updatedIntention, errorExists } = validateInputs(intention);
 
@@ -65,12 +74,12 @@ export const useBooking = () => {
   };
 
   const handleCancel = () => {
-    setIntention(...createIntention());
+    setIntention(createIntention());
   };
 
   const handleReset = () => {
     handleCancel();
-    setBookedByDetails(...createBookedBy());
+    setBookedByDetails(createBookedBy());
     setIntentions([]);
   };
 
@@ -88,5 +97,6 @@ export const useBooking = () => {
     intentions,
     setIntentions,
     handleNext,
+    handleDeleteIntention,
   };
 };

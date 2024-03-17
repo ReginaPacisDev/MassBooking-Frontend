@@ -10,7 +10,7 @@ import Summary from "../Summary";
 import PriceTable from "../../components/PriceTable";
 import Background from "../../components/Background";
 
-const Checkout = (
+const Checkout = ({
   intention,
   intentions,
   bookedByDetails,
@@ -20,8 +20,10 @@ const Checkout = (
   handleSave,
   handleCancel,
   handleNext,
-  setIntentions
-) => {
+  setIntentions,
+  handleDeleteIntention,
+  handleReset,
+}) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const [yesExpanded, setYesExpanded] = useState(false);
@@ -97,6 +99,8 @@ const Checkout = (
             handleNext={handleNext}
             setIntentions={setIntentions}
             handleBookedByInputChange={handleBookedByInputChange}
+            handleDeleteIntention={handleDeleteIntention}
+            handleReset={handleReset}
           />
         </Accordion>
       </div>

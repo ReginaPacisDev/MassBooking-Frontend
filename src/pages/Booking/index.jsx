@@ -2,8 +2,9 @@ import React from "react";
 import Box from "@mui/material/Box";
 
 import InitialBooking from "../../containers/InitialBooking";
-import { useBooking } from "./useBooking";
 import Checkout from "../../containers/Checkout";
+import Confirmation from "../../containers/Confirmation";
+import { useBooking } from "./useBooking";
 
 export default function Booking() {
   const {
@@ -18,12 +19,15 @@ export default function Booking() {
     handleCancel,
     handleNext,
     setIntentions,
+    activeStep,
+    setActiveStep,
+    handleDeleteIntention,
   } = useBooking();
 
   return (
     <Box>
       <>
-        {step === 0 && (
+        {activeStep === 0 && (
           <InitialBooking
             intention={intention}
             bookedByDetails={bookedByDetails}
@@ -34,7 +38,7 @@ export default function Booking() {
             handleCancel={handleReset}
           />
         )}
-        {step === 1 && (
+        {activeStep === 1 && (
           <Checkout
             intention={intention}
             intentions={intentions}
@@ -46,7 +50,12 @@ export default function Booking() {
             handleCancel={handleCancel}
             handleNext={handleNext}
             setIntentions={setIntentions}
+            handleDeleteIntention={handleDeleteIntention}
+            handleReset={handleReset}
           />
+        )}
+        {activeStep === 2 && (
+          <Confirmation resetStepper={() => setActiveStep(0)} />
         )}
       </>
     </Box>

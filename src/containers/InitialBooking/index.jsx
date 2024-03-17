@@ -5,15 +5,15 @@ import BookedBy from "../../components/BookedBy";
 import ButtonSection from "../../components/ButtonSection";
 import Intention from "../../components/Intention";
 
-const InitialBooking = (
+const InitialBooking = ({
   intention,
   bookedByDetails,
   handleIntentionInputChange,
   handleBookedByInputChange,
   handleDateChange,
   handleSave,
-  handleCancel
-) => {
+  handleCancel,
+}) => {
   const { name, massIntention, startDate, endDate } = intention;
 
   const { bookedByName, email, phoneNumber } = bookedByDetails;

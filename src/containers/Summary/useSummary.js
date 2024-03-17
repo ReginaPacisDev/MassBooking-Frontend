@@ -3,6 +3,7 @@ import moment from "moment";
 import { useState } from "react";
 import { usePaystackPayment } from "react-paystack";
 import { useSnackbar } from "notistack";
+import { useDispatch } from "react-redux";
 import {
   getErrorMessage,
   getOffering,
@@ -10,15 +11,14 @@ import {
   getTotalPrice,
   getPaystackTotal,
 } from "../../helpers";
-import {
-  setSuccessResponseData,
-} from "../../store/bookings/slice";
+import { setSuccessResponseData } from "../../store/bookings/slice";
 
 export const useSummary = ({
   intentions,
   bookedBy,
   setIntentions,
   handleNext,
+  handleReset,
 }) => {
   const { enqueueSnackbar } = useSnackbar();
 
@@ -156,7 +156,7 @@ export const useSummary = ({
 
   const initializePayment = usePaystackPayment({
     amount: payStackTotal,
-    publicKey: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
+    publicKey: import.meta.env.VITE_APP_PAYSTACK_PUBLIC_KEY,
     email: bookedBy.email.value,
     phone: bookedBy.phoneNumber.value,
   });
@@ -164,7 +164,7 @@ export const useSummary = ({
   const handleSuccess = () => {
     setOpenLoader(true);
     axios
-      .post(`${process.env.REACT_APP_API_URL}/bookings`, {
+      .post(`${import.meta.env.VITE_APP_API_URL}/bookings`, {
         bookings: intentions.map((massIntention) => ({
           name: massIntention.name.value,
           massIntention: massIntention.massIntention.value,

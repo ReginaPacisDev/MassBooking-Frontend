@@ -1,9 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import NotFound from "./components/NotFound";
-import InitialBooking from "./containers/InitialBooking";
 import RouteWithLayout from "./containers/RouteWithLayout";
+import Booking from "./pages/Booking";
 
 const App = () => {
   return (
@@ -13,15 +12,7 @@ const App = () => {
           index
           element={
             <RouteWithLayout>
-              <InitialBooking />
-            </RouteWithLayout>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <RouteWithLayout>
-              <NotFound />
+              <Booking />
             </RouteWithLayout>
           }
         />

@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import ReginaPacisLogo from "../../../assets/images/reginapacis.png";
 import VectorIcon from "../../../assets/images/leftArrow.svg";
@@ -7,6 +7,7 @@ import VectorIcon from "../../../assets/images/leftArrow.svg";
 const Header = () => {
   const navigate = useNavigate();
   const handleGoBack = () => navigate(-1);
+  const location = useLocation();
 
   return (
     <header className="flex justify-between items-center">
@@ -23,21 +24,20 @@ const Header = () => {
         </div>
       </a>
 
-
-      <button onClick={handleGoBack} className="static z-40">
-        <div
-          className="flex items-center bg-red w-full h-full"
-        >
-          <img
-            src={VectorIcon}
-            alt="left-caret"
-            className="w-[6.81px] h-[11.55px] lg:w-[11.67px] lg:h-[16px]"
-          />
-          <p className="font-Museo ml-1 text-sm lg:text-base text-customBlack-100">
-            Go back
-          </p>
-        </div>
-      </button>
+      {Boolean(location.state) && (
+        <button onClick={handleGoBack} className="static z-40">
+          <div className="flex items-center bg-red w-full h-full">
+            <img
+              src={VectorIcon}
+              alt="left-caret"
+              className="w-[6.81px] h-[11.55px] lg:w-[11.67px] lg:h-[16px]"
+            />
+            <p className="font-Museo ml-1 text-sm lg:text-base text-customBlack-100">
+              Go back
+            </p>
+          </div>
+        </button>
+      )}
     </header>
   );
 };
