@@ -1,5 +1,7 @@
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
 
 import {
   validateAuthInputs,
@@ -7,13 +9,11 @@ import {
   getErrorMessage,
 } from "../helpers/index";
 
-import { useLogin } from "../hooks";
-
 export const loginController = (formDetails, setFormDetails, isLogin) => {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
-  const [{ isValidating }, loginOrSignup] = useLogin(isLogin);
+  const [openLoader, setOpenLoader] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +29,7 @@ export const loginController = (formDetails, setFormDetails, isLogin) => {
     setFormDetails(previousDetails);
   };
 
-  const handleSubmit = async (itemsToSend) => {
+  const handleSubmit = async () => {
     const { errorExists, updatedFormDetails } = validateAuthInputs(formDetails);
 
     const errMessage = `Unable to ${
@@ -40,7 +40,18 @@ export const loginController = (formDetails, setFormDetails, isLogin) => {
       setFormDetails(updatedFormDetails);
     } else {
       try {
-        await loginOrSignup(itemsToSend);
+        setOpenLoader(true);
+
+        const data = await axios.post(
+          `${import.meta.env.VITE_APP_API_URL}/auth/${
+            isLogin ? "login" : "signup"
+          }`,
+          {
+            email: formDetails.email.value,
+            password: formDetails.password.value,
+            ...(!isLogin && { name: formDetails.name.value }),
+          }
+        );
 
         enqueueSnackbar(
           stringifySnackBarProps({
@@ -50,9 +61,16 @@ export const loginController = (formDetails, setFormDetails, isLogin) => {
           })
         );
 
+        localStorage.setItem("access-token", data.data.accessToken);
+
+        setOpenLoader(false);
+
         navigate("/admin/dashboard");
       } catch (error) {
+        setOpenLoader(false);
+
         const errorMessage = getErrorMessage(error);
+
         enqueueSnackbar(
           stringifySnackBarProps({
             variant: "error",
@@ -67,7 +85,7 @@ export const loginController = (formDetails, setFormDetails, isLogin) => {
 
   return {
     handleSubmit,
-    openLoader: isValidating,
+    openLoader,
     handleInputChange,
   };
 };

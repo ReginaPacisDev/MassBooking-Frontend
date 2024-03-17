@@ -57,7 +57,7 @@ const Login = () => {
         />
 
         <h6 className="text-center text-base font-Museo text-customBlack-200">
-          <Link to={"/forgotPassword"} className="text-customGreen-100">
+          <Link to={"/admin/forgotPassword"} className="text-customGreen-100">
             Forgot Password?
           </Link>
         </h6>
