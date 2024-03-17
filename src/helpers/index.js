@@ -155,11 +155,7 @@ export const numberWithCommas = (number) => {
 export const getErrorMessage = (error) => {
   let errorMessage;
   if (error.response) {
-    if (error.response.data.error) {
-      errorMessage = error.response.data.error;
-    } else {
-      errorMessage = error.response.data.errors;
-    }
+    errorMessage = error.response.data.message;
   } else {
     errorMessage = error.message;
   }
