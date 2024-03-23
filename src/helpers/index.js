@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 
-export const ADMIN_ACCESS_TOKEN = "admin-access-token";
+export const ADMIN_ACCESS_TOKEN = "access-token";
 
 export const createIntention = () => ({
   massIntention: {

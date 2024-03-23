@@ -1,9 +1,8 @@
-import React from "react";
 import FormButton from "../../components/FormButton";
 import FormContainer from "../../components/FormContainer";
 import FormInput from "../../components/FormInput";
 import ForgotPasswordImage from "../../assets/images/forgot_password.png";
-import { resetPasswordController } from "../../controllers";
+import { ResetPasswordController } from "../../controllers";
 import Loader from "../../components/Loader";
 
 const ResetPassword = () => {
@@ -12,7 +11,7 @@ const ResetPassword = () => {
     handleInputChange,
     openLoader,
     handleResetPassword,
-  } = resetPasswordController();
+  } = ResetPasswordController();
 
   return (
     <>

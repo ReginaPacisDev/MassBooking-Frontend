@@ -1,1 +1,2 @@
-export * from "./useLogin";
+export * from "./useClickOutside";
+export * from "./useInterval";

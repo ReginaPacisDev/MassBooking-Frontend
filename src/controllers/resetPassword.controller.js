@@ -11,7 +11,7 @@ import {
 
 const BASE_ADMIN_URL = "/admin";
 
-export const resetPasswordController = () => {
+export const ResetPasswordController = () => {
   const [searchParams] = useSearchParams();
 
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export const resetPasswordController = () => {
     if (!email) {
       navigate(`${BASE_ADMIN_URL}/login`);
     }
-  }, [email]);
+  }, [email, navigate]);
 
   const [resetPasswordDetails, setResetPasswordDetails] = useState({
     password: {

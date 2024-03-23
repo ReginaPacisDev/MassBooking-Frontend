@@ -8,7 +8,7 @@ import {
   stringifySnackBarProps,
 } from "../helpers";
 
-export const forgotPasswordController = () => {
+export const ForgotPasswordController = () => {
   const [forgotPasswordDetails, setForgotPasswordDetails] = useState({
     email: {
       value: "",

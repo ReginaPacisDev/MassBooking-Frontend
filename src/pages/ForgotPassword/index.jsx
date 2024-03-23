@@ -1,10 +1,9 @@
-import React, { useState } from "react";
 import FormButton from "../../components/FormButton";
 import FormContainer from "../../components/FormContainer";
 import FormInput from "../../components/FormInput";
 import ForgotPasswordImage from "../../assets/images/forgot_password.png";
 import Loader from "../../components/Loader";
-import { forgotPasswordController } from "../../controllers/forgotPassword.controller";
+import { ForgotPasswordController } from "../../controllers";
 
 const ForgotPassword = () => {
   const {
@@ -12,7 +11,7 @@ const ForgotPassword = () => {
     openLoader,
     handleInputChange,
     handleSetPasswordResetEmail,
-  } = forgotPasswordController();
+  } = ForgotPasswordController();
 
   return (
     <>

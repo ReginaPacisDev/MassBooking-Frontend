@@ -1,15 +1,15 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import RouteWithLayout from "./containers/RouteWithLayout";
 import Booking from "./pages/Booking";
-import SignUp from "./pages/Signup";
 import Login from "./pages/Login";
 import ResetPassword from "./pages/ResetPassword";
+import Dashboard from "./pages/Dashboard";
 
 import ForgotPassword from "./pages/ForgotPassword";
 import AccessLayout from "./containers/AccessLayout";
 import Admin from "./containers/Admin";
+import AdminPagesLayout from "./containers/AdminPagesLayout";
 
 const App = () => {
   return (
@@ -47,6 +47,14 @@ const App = () => {
               <AccessLayout>
                 <ResetPassword />
               </AccessLayout>
+            }
+          />
+          <Route
+            path="dashboard"
+            element={
+              <AdminPagesLayout title="Today's Mass Booking Analytics">
+                <Dashboard />
+              </AdminPagesLayout>
             }
           />
         </Route>
