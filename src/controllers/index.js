@@ -4,3 +4,4 @@ export * from "./resetPassword.controller";
 export * from "./dashboard.controller";
 export * from "./adminPagesLayout.controller";
 export * from "./massBookings.controller";
+export * from "./massBooking.controller";

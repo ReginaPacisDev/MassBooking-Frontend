@@ -1,4 +1,3 @@
-import React from "react";
 import DisabledInput from "../DisabledInput";
 
 const DisabledInputContainer = ({ label, value, fullwidth, bigText }) => {
