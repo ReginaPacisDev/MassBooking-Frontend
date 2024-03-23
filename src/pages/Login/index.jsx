@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import FormButton from "../../components/FormButton";
 import FormContainer from "../../components/FormContainer";
 import FormInput from "../../components/FormInput";
 import Loader from "../../components/Loader";
 import SignInImage from "../../assets/images/sign_in.png";
-import { loginController } from "../../controllers/login.controller";
+import { LoginController } from "../../controllers/login.controller";
 
 const Login = () => {
   const [signInDetails, setSignInDetails] = useState({
@@ -19,7 +19,7 @@ const Login = () => {
     },
   });
 
-  const { openLoader, handleSubmit, handleInputChange } = loginController(
+  const { openLoader, handleSubmit, handleInputChange } = LoginController(
     signInDetails,
     setSignInDetails,
     true

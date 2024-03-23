@@ -1,10 +1,9 @@
-import React from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import TableHeader from "../TableItems/TableHeader";
 import TableData from "../TableItems/TableData";
 import { formatTime } from "../../helpers";
-import ActionImage from "../../images/action.svg";
+import ActionImage from "../../assets/images/action.svg";
 
 const headerColumns = [
   "NAME",

@@ -12,7 +12,8 @@ module.exports = {
   settings: { react: { version: "18.2" } },
   plugins: ["react-refresh"],
   rules: {
+    ignoreRestSiblings: true,
     "react/prop-types": "off",
-    "no-useless-escape": "off"
+    "no-useless-escape": "off",
   },
 };

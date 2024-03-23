@@ -1,5 +1,3 @@
-import React from "react";
-
 import Pagination from "@mui/material/Pagination";
 import { styled } from "@mui/system";
 
@@ -33,13 +31,15 @@ const StyledPagination = styled(Pagination, {
   }
 `;
 
-export const AppPagination = ({
-  count,
-  handleChange,
-}) => {
+export const AppPagination = ({ count, handleChange, pageNumber }) => {
   return (
     <div className="mt-0 lg:mt-6 mb-8 p-2 lg:p-0">
-      <StyledPagination count={count} onChange={handleChange} shape="rounded" />
+      <StyledPagination
+        count={count}
+        onChange={handleChange}
+        shape="rounded"
+        page={pageNumber}
+      />
     </div>
   );
 };

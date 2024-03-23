@@ -5,8 +5,9 @@ import Booking from "./pages/Booking";
 import Login from "./pages/Login";
 import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
-
 import ForgotPassword from "./pages/ForgotPassword";
+import MassBookings from "./pages/MassBookings";
+
 import AccessLayout from "./containers/AccessLayout";
 import Admin from "./containers/Admin";
 import AdminPagesLayout from "./containers/AdminPagesLayout";
@@ -54,6 +55,17 @@ const App = () => {
             element={
               <AdminPagesLayout title="Today's Mass Booking Analytics">
                 <Dashboard />
+              </AdminPagesLayout>
+            }
+          />
+          <Route
+            path="massBookings"
+            element={
+              <AdminPagesLayout
+                title="Mass Bookings"
+                helperText="Keep track of all the mass booking."
+              >
+                <MassBookings />
               </AdminPagesLayout>
             }
           />

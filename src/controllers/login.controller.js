@@ -9,7 +9,7 @@ import {
   getErrorMessage,
 } from "../helpers/index";
 
-export const loginController = (formDetails, setFormDetails, isLogin) => {
+export const LoginController = (formDetails, setFormDetails, isLogin) => {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
