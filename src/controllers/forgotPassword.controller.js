@@ -47,12 +47,7 @@ export const forgotPasswordController = () => {
         await axios.get(
           `${import.meta.env.VITE_APP_API_URL}/users/send-password-reset-link/${
             forgotPasswordDetails.email.value
-          }`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("access-token")}`,
-            },
-          }
+          }`
         );
 
         await enqueueSnackbar(

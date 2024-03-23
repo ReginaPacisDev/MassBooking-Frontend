@@ -5,6 +5,8 @@ import RouteWithLayout from "./containers/RouteWithLayout";
 import Booking from "./pages/Booking";
 import SignUp from "./pages/Signup";
 import Login from "./pages/Login";
+import ResetPassword from "./pages/ResetPassword";
+
 import ForgotPassword from "./pages/ForgotPassword";
 import AccessLayout from "./containers/AccessLayout";
 import Admin from "./containers/Admin";
@@ -36,6 +38,14 @@ const App = () => {
             element={
               <AccessLayout>
                 <ForgotPassword />
+              </AccessLayout>
+            }
+          />
+          <Route
+            path="resetPassword"
+            element={
+              <AccessLayout>
+                <ResetPassword />
               </AccessLayout>
             }
           />
