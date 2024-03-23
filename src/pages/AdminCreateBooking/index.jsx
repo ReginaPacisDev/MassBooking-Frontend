@@ -1,11 +1,10 @@
 import Box from "@mui/material/Box";
 
-import InitialBooking from "../../containers/InitialBooking";
+import InitialBooking from "../../containers/AdminInitialBooking";
 import Checkout from "../../containers/Checkout";
-import Confirmation from "../../containers/Confirmation";
 import { BookingController } from "../../controllers";
 
-export default function Booking() {
+export default function AdminCreateBooking() {
   const {
     intention,
     intentions,
@@ -19,9 +18,8 @@ export default function Booking() {
     handleNext,
     setIntentions,
     activeStep,
-    setActiveStep,
     handleDeleteIntention,
-  } = BookingController();
+  } = BookingController(true);
 
   return (
     <Box>
@@ -51,10 +49,8 @@ export default function Booking() {
             setIntentions={setIntentions}
             handleDeleteIntention={handleDeleteIntention}
             handleReset={handleReset}
+            admin
           />
-        )}
-        {activeStep === 2 && (
-          <Confirmation resetStepper={() => setActiveStep(0)} />
         )}
       </>
     </Box>

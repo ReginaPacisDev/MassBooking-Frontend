@@ -29,20 +29,16 @@ export const useSummary = ({
   const handleIntentionInputChange = (id) => (e) => {
     const { name, value } = e.target;
 
-    let index = 0;
-    let foundIntention;
-
     const intentionsCopy = [...intentions];
 
-    intentionsCopy.forEach((intention, idx) => {
-      if (intention.id === id) {
-        index = idx;
-      }
+    const index = intentionsCopy.findIndex((intention) => intention.id === id);
 
-      foundIntention = intention;
-    });
+    const foundIntention = intentionsCopy[index];
 
-    let updatedIntention = { ...foundIntention, [name]: { value, error: "" } };
+    const updatedIntention = {
+      ...foundIntention,
+      [name]: { value, error: "" },
+    };
 
     intentionsCopy[index] = updatedIntention;
 
@@ -50,18 +46,11 @@ export const useSummary = ({
   };
 
   const handleDateChange = (id) => (type) => (value) => {
-    let index = 0;
-    let foundIntention;
-
     const intentionsCopy = [...intentions];
 
-    intentionsCopy.forEach((intention, idx) => {
-      if (intention.id === id) {
-        index = idx;
-      }
+    const index = intentionsCopy.findIndex((intention) => intention.id === id);
 
-      foundIntention = intention;
-    });
+    const foundIntention = intentionsCopy[index];
 
     let updatedIntention = { ...foundIntention, [type]: { error: "" } };
 

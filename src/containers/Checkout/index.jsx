@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSnackbar } from "notistack";
 
 import Intention from "../../components/Intention";
@@ -23,6 +23,7 @@ const Checkout = ({
   setIntentions,
   handleDeleteIntention,
   handleReset,
+  admin,
 }) => {
   const { enqueueSnackbar } = useSnackbar();
 
@@ -56,7 +57,7 @@ const Checkout = ({
 
   return (
     <div className="mt-5 pt-5 font-Museo">
-      {!noExpanded && <Background />}
+      {!noExpanded && !admin && <Background />}
       <h3 className="text-lg lg:text-3xl mb-2 font-normal text-customBlack-200">
         Your mass intention intention has been saved.
       </h3>
@@ -101,6 +102,7 @@ const Checkout = ({
             handleBookedByInputChange={handleBookedByInputChange}
             handleDeleteIntention={handleDeleteIntention}
             handleReset={handleReset}
+            admin={Boolean(admin)}
           />
         </Accordion>
       </div>

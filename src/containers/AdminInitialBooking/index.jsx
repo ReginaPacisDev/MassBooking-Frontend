@@ -1,10 +1,8 @@
-import Background from "../../components/Background";
-
 import BookedBy from "../../components/BookedBy";
 import ButtonSection from "../../components/ButtonSection";
 import Intention from "../../components/Intention";
 
-const InitialBooking = ({
+const AdminInitialBooking = ({
   intention,
   bookedByDetails,
   handleIntentionInputChange,
@@ -18,24 +16,14 @@ const InitialBooking = ({
   const { bookedByName, email, phoneNumber } = bookedByDetails;
 
   return (
-    <section className="pt-4 font-Museo lg:w-[50%] 2xl:w-[40%]">
-      <Background />
-      <h3 className="mt-5 text-xl lg:text-3xl mb-3 text-customBlack-200">
-        Please fill this form to book mass
-      </h3>
-
-      <p className="text-sm lg:text-base text-customBlack-200">
-        Ensure you fill the details correctly to avoid error when reading your
-        mass intention.
-      </p>
-
+    <section className="font-Museo lg:w-[700px] lg:pl-10 mt-[-30px]">
       <BookedBy
         bookedByName={bookedByName}
         email={email}
         phoneNumber={phoneNumber}
         handleChange={handleBookedByInputChange}
         mode="create"
-        addMarginTop
+        sectionHeader="REQUESTER INFORMATION"
       />
 
       <Intention
@@ -45,6 +33,7 @@ const InitialBooking = ({
         startDate={startDate}
         endDate={endDate}
         handleDateChange={handleDateChange}
+        textAreaPlaceholder="Write the prayer request *"
       />
 
       <ButtonSection handleCancel={handleCancel} handleSave={handleSave} />
@@ -52,4 +41,4 @@ const InitialBooking = ({
   );
 };
 
-export default InitialBooking;
+export default AdminInitialBooking;

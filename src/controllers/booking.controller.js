@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { createBookedBy, createIntention, validateInputs } from "../../helpers";
+import { createBookedBy, createIntention, validateInputs } from "../helpers";
 
-export const useBooking = () => {
+export const BookingController = (admin) => {
   const [activeStep, setActiveStep] = useState(0);
 
   const [intentions, setIntentions] = useState([]);
@@ -40,7 +40,11 @@ export const useBooking = () => {
   };
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if (admin && activeStep === 1) {
+      setActiveStep(0);
+    } else {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
   };
 
   const handleUpdateIntentions = (intention) => {

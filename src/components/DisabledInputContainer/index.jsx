@@ -7,6 +7,7 @@ const DisabledInputContainer = ({ label, value, fullwidth, bigText }) => {
       {bigText ? (
         <textarea
           defaultValue={value}
+          value={value}
           className="border-[1px] p-3 w-full mb-5 border-customGray-500 bg-white rounded-lg text-customBlack-800"
           rows={5}
           disabled

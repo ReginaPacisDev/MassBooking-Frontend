@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import ForgotPassword from "./pages/ForgotPassword";
 import MassBookings from "./pages/MassBookings";
 import MassBooking from "./pages/MassBooking";
+import AdminCreateBooking from "./pages/AdminCreateBooking";
 
 import AccessLayout from "./containers/AccessLayout";
 import Admin from "./containers/Admin";
@@ -78,6 +79,14 @@ const App = () => {
                 helperText="Keep track of all the mass booking."
               >
                 <MassBooking />
+              </AdminPagesLayout>
+            }
+          />
+          <Route
+            path="createBooking"
+            element={
+              <AdminPagesLayout title="Create Booking">
+                <AdminCreateBooking />
               </AdminPagesLayout>
             }
           />

@@ -1,4 +1,3 @@
-import React from "react";
 import converter from "number-to-words";
 
 import SectionHeader from "../SectionHeader";
