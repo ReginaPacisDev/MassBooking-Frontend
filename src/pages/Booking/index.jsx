@@ -8,6 +8,7 @@ import { BookingController } from "../../controllers";
 export default function Booking() {
   const {
     intention,
+    canUseCurrentDate,
     intentions,
     bookedByDetails,
     handleIntentionInputChange,
@@ -35,6 +36,7 @@ export default function Booking() {
             handleDateChange={handleDateChange}
             handleSave={handleSave}
             handleCancel={handleReset}
+            canUseCurrentDate={canUseCurrentDate}
           />
         )}
         {activeStep === 1 && (

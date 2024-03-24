@@ -1,5 +1,4 @@
-import React from "react";
-
+import moment from "moment";
 import DatePicker from "../Datepicker";
 import Input from "../Input";
 import InputContainer from "../InputContainer";
@@ -13,6 +12,7 @@ const Intention = ({
   handleChange,
   handleDateChange,
   textAreaPlaceholder,
+  canUseCurrentDate,
 }) => {
   return (
     <div className="pt-4">
@@ -50,7 +50,11 @@ const Intention = ({
             value={startDate.value}
             handleChange={handleDateChange("startDate")}
             placeholder="Start Date"
-            minDate={Date.now()}
+            minDate={
+              canUseCurrentDate
+                ? moment().toDate()
+                : moment().add(1, "day").toDate()
+            }
             addborderbottom="true"
           />
         </InputContainer>

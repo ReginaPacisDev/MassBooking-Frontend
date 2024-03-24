@@ -1,5 +1,8 @@
 import { useState } from "react";
+import moment from "moment";
+
 import { createBookedBy, createIntention, validateInputs } from "../helpers";
+import { useInterval } from "../hooks";
 
 export const BookingController = (admin) => {
   const [activeStep, setActiveStep] = useState(0);
@@ -9,6 +12,8 @@ export const BookingController = (admin) => {
   const [bookedByDetails, setBookedByDetails] = useState(createBookedBy());
 
   const [intention, setIntention] = useState(createIntention());
+
+  const [canUseCurrentDate, setCanUseCurrentDate] = useState(true);
 
   const handleIntentionInputChange = (e) => {
     const { name, value } = e.target;
@@ -87,8 +92,17 @@ export const BookingController = (admin) => {
     setIntentions([]);
   };
 
+  useInterval(() => {
+    const currentTime = moment();
+
+    if (currentTime.isAfter(moment("14:00:00", "HH:mm:ss"))) {
+      setCanUseCurrentDate(false);
+    }
+  }, 1000);
+
   return {
     intention,
+    canUseCurrentDate,
     bookedByDetails,
     handleIntentionInputChange,
     handleBookedByInputChange,

@@ -7,6 +7,7 @@ import { BookingController } from "../../controllers";
 export default function AdminCreateBooking() {
   const {
     intention,
+    canUseCurrentDate,
     intentions,
     bookedByDetails,
     handleIntentionInputChange,
@@ -33,6 +34,7 @@ export default function AdminCreateBooking() {
             handleDateChange={handleDateChange}
             handleSave={handleSave}
             handleCancel={handleReset}
+            canUseCurrentDate={canUseCurrentDate}
           />
         )}
         {activeStep === 1 && (

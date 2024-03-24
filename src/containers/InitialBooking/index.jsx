@@ -6,6 +6,7 @@ import Intention from "../../components/Intention";
 
 const InitialBooking = ({
   intention,
+  canUseCurrentDate,
   bookedByDetails,
   handleIntentionInputChange,
   handleBookedByInputChange,
@@ -45,6 +46,7 @@ const InitialBooking = ({
         startDate={startDate}
         endDate={endDate}
         handleDateChange={handleDateChange}
+        canUseCurrentDate={canUseCurrentDate}
       />
 
       <ButtonSection handleCancel={handleCancel} handleSave={handleSave} />
