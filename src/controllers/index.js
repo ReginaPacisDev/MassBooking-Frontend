@@ -10,3 +10,4 @@ export * from "./managePayments.controller";
 export * from "./generalSettings.controller";
 export * from "./superAdmin.controller";
 export * from "./settingsController";
+export * from "./summary.controller";

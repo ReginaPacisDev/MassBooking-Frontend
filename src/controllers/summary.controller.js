@@ -4,16 +4,17 @@ import { useState } from "react";
 import { usePaystackPayment } from "react-paystack";
 import { useSnackbar } from "notistack";
 import { useDispatch } from "react-redux";
+
 import {
   getErrorMessage,
   getOffering,
   stringifySnackBarProps,
   getTotalPrice,
   getPaystackTotal,
-} from "../../helpers";
-import { setSuccessResponseData } from "../../store/bookings/slice";
+} from "../helpers";
+import { setSuccessResponseData } from "../store/bookings/slice";
 
-export const useSummary = ({
+export const SummaryController = ({
   intentions,
   bookedBy,
   setIntentions,

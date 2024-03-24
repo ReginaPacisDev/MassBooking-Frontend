@@ -6,7 +6,7 @@ import DisabledInput from "../../components/DisabledInput";
 import SummaryItem from "../../components/SummaryItem";
 import PaystackIcon from "../../assets/images/paystack.svg";
 import BookedBy from "../../components/BookedBy";
-import { useSummary } from "./useSummary";
+import { SummaryController } from "../../controllers";
 import Loader from "../../components/Loader";
 import {
   getTotalPrice,
@@ -30,7 +30,7 @@ const Summary = ({
     triggerPaymentModal,
     handleSuccess,
     openLoader,
-  } = useSummary({
+  } = SummaryController({
     intentions,
     bookedBy,
     setIntentions,
