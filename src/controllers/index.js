@@ -6,3 +6,4 @@ export * from "./adminPagesLayout.controller";
 export * from "./massBookings.controller";
 export * from "./massBooking.controller";
 export * from "./booking.controller";
+export * from "./managePayments.controller";

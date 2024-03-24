@@ -8,7 +8,9 @@ const PaymentStat = ({ bookedBy, amountPaid, numberOfIntentions }) => {
         <p className="font-light">{`Booked ${numberOfIntentions} intention${
           numberOfIntentions > 1 ? "s" : ""
         }`}</p>
-        <h2 className="text-customGreen-100 font-bold text-lg">₦ {numberWithCommas(amountPaid)}</h2>
+        <h2 className="text-customGreen-100 font-bold text-lg">
+          ₦ {numberWithCommas(Math.floor(amountPaid))}
+        </h2>
       </div>
     </div>
   );
