@@ -10,7 +10,10 @@ const Admin = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === BASE_ADMIN_URL) {
+    if (
+      location.pathname === BASE_ADMIN_URL ||
+      location.pathname === `${BASE_ADMIN_URL}/login`
+    ) {
       const token = localStorage.getItem(ADMIN_ACCESS_TOKEN);
 
       if (!token) {
