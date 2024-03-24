@@ -10,7 +10,7 @@ import {
   ADMIN_ACCESS_TOKEN,
 } from "../helpers";
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 9;
 
 const defaultPeriod = "day";
 

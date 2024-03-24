@@ -10,6 +10,7 @@ import MassBookings from "./pages/MassBookings";
 import MassBooking from "./pages/MassBooking";
 import AdminCreateBooking from "./pages/AdminCreateBooking";
 import ManagePayments from "./pages/ManagePayments";
+import Settings from "./pages/Settings";
 
 import AccessLayout from "./containers/AccessLayout";
 import Admin from "./containers/Admin";
@@ -97,6 +98,15 @@ const App = () => {
             element={
               <AdminPagesLayout title="Manage Payments">
                 <ManagePayments />
+              </AdminPagesLayout>
+            }
+          />
+
+          <Route
+            path="settings"
+            element={
+              <AdminPagesLayout title="Admin Settings">
+                <Settings />
               </AdminPagesLayout>
             }
           />

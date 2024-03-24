@@ -7,3 +7,6 @@ export * from "./massBookings.controller";
 export * from "./massBooking.controller";
 export * from "./booking.controller";
 export * from "./managePayments.controller";
+export * from "./generalSettings.controller";
+export * from "./superAdmin.controller";
+export * from "./settingsController";
