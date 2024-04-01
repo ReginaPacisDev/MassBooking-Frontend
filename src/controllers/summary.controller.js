@@ -198,7 +198,7 @@ export const SummaryController = ({
           stringifySnackBarProps({
             variant: "error",
             message:
-              "Unable to complete mass booking, please contact the administrator",
+              "Unable to complete Mass booking, please contact the administrator",
             title: "Error",
             additionalData: errorMessage,
           })

@@ -45,7 +45,7 @@ const Confirmation = ({ resetStepper }) => {
       </div>
 
       <p className="text-base text-customBlack-200">
-        Do you want to book another mass?{" "}
+        Do you want to book another Mass?{" "}
         <StyledLink component="span" onClick={resetStepper}>
           Go to form
         </StyledLink>{" "}

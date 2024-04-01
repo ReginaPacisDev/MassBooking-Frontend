@@ -107,7 +107,7 @@ const MassBookings = () => {
       </div>
       <div className="md:flex items-center mb-10">
         <h6 className="mr-5 text-customBlue-200 font-Museo mb-5 md:mb-0">
-          Filter mass booking
+          Filter Mass booking
         </h6>
         <div className="md:w-[160px] mb-5 md:mb-0">
           <Dropdown

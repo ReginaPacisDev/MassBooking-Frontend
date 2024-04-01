@@ -28,7 +28,7 @@ const Dashboard = () => {
               Mass Booking Overview
             </h6>
             <p className="text-base lg:text-lg mb-5 font-light font-Museo">
-              Keep track of all the mass bookings and payments at a glance.
+              Keep track of all the Mass bookings and payments at a glance.
             </p>
             <div>
               <div className="relative">

@@ -39,7 +39,7 @@ export const createBookedBy = () => ({
 });
 
 export const ERRORS = {
-  name: "Who is this mass being booked for?",
+  name: "Who is this Intention being booked for?",
   email: "Email is required",
   startDate: "Start date is required",
   endDate: "End date is required",

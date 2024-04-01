@@ -59,7 +59,7 @@ const Checkout = ({
     <div className="mt-5 pt-5 font-Museo">
       {!noExpanded && !admin && <Background />}
       <h3 className="text-lg lg:text-3xl mb-2 font-normal text-customBlack-200">
-        Your mass intention intention has been saved.
+        Your Mass intention intention has been saved.
       </h3>
       <p className="text-xs lg:text-base">
         Before we proceed, would you like to book another intention?

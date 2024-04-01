@@ -41,7 +41,7 @@ const Intention = ({
       </InputContainer>
 
       <p className="text-sm text-customBlack-200 mb-5">
-        Select a start and end date for the mass intention to be read
+        Select a start and end date for the Mass intention to be read
       </p>
 
       <div className="pb-5 lg:flex justify-between">

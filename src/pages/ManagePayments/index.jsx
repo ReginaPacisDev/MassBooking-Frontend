@@ -35,7 +35,7 @@ const ManagePayments = () => {
   return (
     <div className="mt-[-50px] lg:mt-[-25px]">
       <h1 className="text-lg lg:text-2xl mb-10">
-        See all payments made for mass booking
+        See all payments made for Mass booking
       </h1>
       <div className="md:flex justify-between flex-wrap">
         <PaymentHeaderStat

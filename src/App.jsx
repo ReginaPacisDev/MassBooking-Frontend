@@ -68,7 +68,7 @@ const App = () => {
             element={
               <AdminPagesLayout
                 title="Mass Bookings"
-                helperText="Keep track of all the mass booking."
+                helperText="Keep track of all the Mass booking."
               >
                 <MassBookings />
               </AdminPagesLayout>
@@ -79,7 +79,7 @@ const App = () => {
             element={
               <AdminPagesLayout
                 title="Mass Bookings"
-                helperText="Keep track of all the mass booking."
+                helperText="Keep track of all the Mass booking."
               >
                 <MassBooking />
               </AdminPagesLayout>
