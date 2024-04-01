@@ -1,5 +1,4 @@
 import Background from "../../components/Background";
-
 import BookedBy from "../../components/BookedBy";
 import ButtonSection from "../../components/ButtonSection";
 import Intention from "../../components/Intention";

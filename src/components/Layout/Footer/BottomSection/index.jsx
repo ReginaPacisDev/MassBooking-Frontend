@@ -1,4 +1,3 @@
-import React from "react";
 import UpArrow from "../../../../assets/images/upArrow.svg";
 
 const BottomSection = () => {

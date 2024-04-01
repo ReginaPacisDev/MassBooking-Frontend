@@ -1,5 +1,3 @@
-import React from "react";
-
 import { numberWithCommas } from "../../helpers";
 import Wave from "../../assets/images/wave.svg";
 

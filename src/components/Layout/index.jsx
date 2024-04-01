@@ -1,5 +1,3 @@
-import React from "react";
-
 import Header from "./Header";
 import TopSection from "./Footer/TopSection";
 import BottomSection from "./Footer/BottomSection";

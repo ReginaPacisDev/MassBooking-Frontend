@@ -1,5 +1,3 @@
-import React from "react";
-
 const InputContainer = ({ error, children, halfWidth }) => {
   return (
     <div className={`mb-7 relative ${halfWidth && "lg:w-[45%]"}`}>

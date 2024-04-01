@@ -1,5 +1,3 @@
-import React from "react";
-
 const OfficeInfo = ({ imgUrl, imgAlt, children }) => {
   return (
     <div className="flex items-start mb-4">

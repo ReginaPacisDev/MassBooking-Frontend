@@ -1,5 +1,3 @@
-import React from "react";
-
 import LinkedIn from "../../../../assets/images/linkedIn.svg";
 import Instagram from "../../../../assets/images/instagram.svg";
 import Twitter from "../../../../assets/images/twitter.svg";

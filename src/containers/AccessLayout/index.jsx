@@ -1,4 +1,3 @@
-import React from "react";
 import ReginaPacisLogo from "../../assets/images/reginapacis.png";
 
 const AccessLayout = ({ children }) => {

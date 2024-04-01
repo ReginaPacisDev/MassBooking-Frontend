@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import FormButton from "../../components/FormButton";
 import FormContainer from "../../components/FormContainer";

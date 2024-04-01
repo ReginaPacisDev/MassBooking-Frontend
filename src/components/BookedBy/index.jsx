@@ -1,4 +1,3 @@
-import React from "react";
 import Input from "../Input";
 import InputContainer from "../InputContainer";
 import SectionHeader from "../SectionHeader";

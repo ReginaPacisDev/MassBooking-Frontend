@@ -1,5 +1,3 @@
-import React from "react";
-
 const FormContainer = ({ backgroundImage, children, formText }) => {
   return (
     <div>

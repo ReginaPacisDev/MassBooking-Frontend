@@ -49,9 +49,11 @@ const StyledCardContent = styled(CardContent)`
 `;
 
 const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
+  const propsCopy = { ...props };
 
-  return <IconButton {...other} />;
+  delete propsCopy.expand;
+
+  return <IconButton {...propsCopy} />;
 })(({ theme, expand }) => ({
   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
   marginLeft: "auto",

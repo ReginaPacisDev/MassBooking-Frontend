@@ -1,5 +1,3 @@
-import React from "react";
-
 const NoIntentions = () => {
   return (
     <div className="w-full h-[150px] lg:h-[300px] flex flex-col justify-center items-center">

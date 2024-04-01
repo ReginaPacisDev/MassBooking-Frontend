@@ -1,5 +1,3 @@
-import React from "react";
-
 const Segment = ({ header, children }) => {
   return (
     <div className="my-5 py-1">

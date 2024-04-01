@@ -1,4 +1,3 @@
-import React from "react";
 import BackgroundImage from "../../assets/images/background.svg";
 
 const Background = () => {

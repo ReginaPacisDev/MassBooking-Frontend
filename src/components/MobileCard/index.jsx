@@ -1,4 +1,3 @@
-import React from "react";
 import { formatTime, numberWithCommas } from "../../helpers";
 
 const MobileCard = ({

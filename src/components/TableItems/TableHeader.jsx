@@ -1,5 +1,3 @@
-import React from "react";
-
 const TableHeader = ({ text, border, removeXPadding }) => {
   const textColor = border ? "text-customBlack-200" : "text-customBlack-800";
   const borderColor = border && "border border-customSlate-100";

@@ -1,5 +1,4 @@
 import Button from "@mui/material/Button";
-import React from "react";
 import { styled } from "@mui/system";
 
 export const StyledButton = styled(Button)`

@@ -1,4 +1,3 @@
-import React from "react";
 import TableHeader from "../TableItems/TableHeader";
 import TableData from "../TableItems/TableData";
 

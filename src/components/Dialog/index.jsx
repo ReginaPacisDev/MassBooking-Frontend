@@ -1,4 +1,3 @@
-import * as React from "react";
 import Dialog from "@mui/material/Dialog";
 
 export const Modal = ({ handleClose, handleLogout, open }) => {

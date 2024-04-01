@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import RouteWithLayout from "./containers/RouteWithLayout";
+import NotFound from "./containers/NotFound";
 import Booking from "./pages/Booking";
 import Login from "./pages/Login";
 import ResetPassword from "./pages/ResetPassword";
@@ -111,6 +112,15 @@ const App = () => {
             }
           />
         </Route>
+
+        <Route
+          path="*"
+          element={
+            <RouteWithLayout>
+              <NotFound />
+            </RouteWithLayout>
+          }
+        />
       </Routes>
     </div>
   );
