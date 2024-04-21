@@ -22,7 +22,7 @@ jobs:
           VITE_APP_API_URL: ${{ secrets.API_URL }}
         run: |
           npm install
-          npm build
+          npm run build
 
       - name: List output files
         run: find dist/ -print
