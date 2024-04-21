@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
 import { Provider } from "react-redux";
