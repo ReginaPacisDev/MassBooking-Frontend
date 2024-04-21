@@ -5,7 +5,7 @@ import FormContainer from "../../components/FormContainer";
 import FormInput from "../../components/FormInput";
 import Loader from "../../components/Loader";
 import SignUpImage from "../../assets/images/sign_up.png";
-import { loginController } from "../../controllers/login.controller";
+import { LoginController } from "../../controllers/login.controller";
 
 const SignUp = () => {
   const [signUpDetails, setSignUpDetails] = useState({
@@ -27,7 +27,7 @@ const SignUp = () => {
     handleSubmit,
     openLoader: isValidating,
     handleInputChange,
-  } = loginController(signUpDetails, setSignUpDetails);
+  } = LoginController(signUpDetails, setSignUpDetails);
 
   return (
     <>
