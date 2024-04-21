@@ -12,6 +12,7 @@ import MassBooking from "./pages/MassBooking";
 import AdminCreateBooking from "./pages/AdminCreateBooking";
 import ManagePayments from "./pages/ManagePayments";
 import Settings from "./pages/Settings";
+import Signup from "./pages/Signup";
 
 import AccessLayout from "./containers/AccessLayout";
 import Admin from "./containers/Admin";
@@ -36,6 +37,14 @@ const App = () => {
             element={
               <AccessLayout>
                 <Login />
+              </AccessLayout>
+            }
+          />
+          <Route
+            path="signup"
+            element={
+              <AccessLayout>
+                <Signup />
               </AccessLayout>
             }
           />
