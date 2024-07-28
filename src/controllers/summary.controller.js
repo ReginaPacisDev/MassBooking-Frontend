@@ -20,6 +20,7 @@ export const SummaryController = ({
   setIntentions,
   handleNext,
   handleReset,
+  admin,
 }) => {
   const { enqueueSnackbar } = useSnackbar();
 
@@ -39,6 +40,44 @@ export const SummaryController = ({
     const updatedIntention = {
       ...foundIntention,
       [name]: { value, error: "" },
+    };
+
+    intentionsCopy[index] = updatedIntention;
+
+    setIntentions(intentionsCopy);
+  };
+
+  const handleSundayDropdownChange = (id) => (e) => {
+    const { value } = e.target;
+
+    const intentionsCopy = [...intentions];
+
+    const index = intentionsCopy.findIndex((intention) => intention.id === id);
+
+    const foundIntention = intentionsCopy[index];
+
+    const updatedIntention = {
+      ...foundIntention,
+      sundayMassTime: { value, error: "" },
+    };
+
+    intentionsCopy[index] = updatedIntention;
+
+    setIntentions(intentionsCopy);
+  };
+
+  const handleWeekdayDropdownChange = (id) => (e) => {
+    const { value } = e.target;
+
+    const intentionsCopy = [...intentions];
+
+    const index = intentionsCopy.findIndex((intention) => intention.id === id);
+
+    const foundIntention = intentionsCopy[index];
+
+    const updatedIntention = {
+      ...foundIntention,
+      weekdayMassTime: { value, error: "" },
     };
 
     intentionsCopy[index] = updatedIntention;
@@ -163,10 +202,17 @@ export const SummaryController = ({
           bookedBy: bookedBy.bookedByName.value,
           email: bookedBy.email.value,
           phoneNumber: bookedBy.phoneNumber.value,
+          ...(massIntention.weekdayMassTime.value && {
+            weekdayMassTime: massIntention.weekdayMassTime.value,
+          }),
+          ...(massIntention.sundayMassTime.value && {
+            weekdayMassTime: massIntention.sundayMassTime.value,
+          }),
           amountPaid: getOffering(
             massIntention.startDate.value,
             massIntention.endDate.value
           ),
+          createdBy: admin ? "Admin" : "User",
         })),
       })
       .then(({ data }) => {
@@ -218,5 +264,7 @@ export const SummaryController = ({
     triggerPaymentModal,
     handleSuccess,
     openLoader,
+    handleSundayDropdownChange,
+    handleWeekdayDropdownChange,
   };
 };

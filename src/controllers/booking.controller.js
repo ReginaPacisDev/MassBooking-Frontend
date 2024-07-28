@@ -44,6 +44,34 @@ export const BookingController = (admin) => {
     setIntention(updatedIntention);
   };
 
+  const handleSundayDropdownChange = (e) => {
+    const { value } = e.target;
+
+    const updatedIntention = {
+      ...intention,
+      sundayMassTime: {
+        value,
+        error: "",
+      },
+    };
+
+    setIntention(updatedIntention);
+  };
+
+  const handleWeekdayDropdownChange = (e) => {
+    const { value } = e.target;
+
+    const updatedIntention = {
+      ...intention,
+      weekdayMassTime: {
+        value,
+        error: "",
+      },
+    };
+
+    setIntention(updatedIntention);
+  };
+
   const handleNext = () => {
     if (admin && activeStep === 1) {
       setActiveStep(0);
@@ -116,5 +144,7 @@ export const BookingController = (admin) => {
     setIntentions,
     handleNext,
     handleDeleteIntention,
+    handleSundayDropdownChange,
+    handleWeekdayDropdownChange,
   };
 };

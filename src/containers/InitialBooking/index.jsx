@@ -12,8 +12,17 @@ const InitialBooking = ({
   handleDateChange,
   handleSave,
   handleCancel,
+  handleSundayDropdownChange,
+  handleWeekdayDropdownChange,
 }) => {
-  const { name, massIntention, startDate, endDate } = intention;
+  const {
+    name,
+    massIntention,
+    startDate,
+    endDate,
+    sundayMassTime,
+    weekdayMassTime,
+  } = intention;
 
   const { bookedByName, email, phoneNumber } = bookedByDetails;
 
@@ -44,8 +53,12 @@ const InitialBooking = ({
         massIntention={massIntention}
         startDate={startDate}
         endDate={endDate}
+        sundayMassTime={sundayMassTime}
+        weekdayMassTime={weekdayMassTime}
         handleDateChange={handleDateChange}
         canUseCurrentDate={canUseCurrentDate}
+        handleSundayDropdownChange={handleSundayDropdownChange}
+        handleWeekdayDropdownChange={handleWeekdayDropdownChange}
       />
 
       <ButtonSection handleCancel={handleCancel} handleSave={handleSave} />

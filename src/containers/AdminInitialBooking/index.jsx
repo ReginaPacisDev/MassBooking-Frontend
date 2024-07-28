@@ -11,8 +11,17 @@ const AdminInitialBooking = ({
   handleDateChange,
   handleSave,
   handleCancel,
+  handleSundayDropdownChange,
+  handleWeekdayDropdownChange,
 }) => {
-  const { name, massIntention, startDate, endDate } = intention;
+  const {
+    name,
+    massIntention,
+    startDate,
+    endDate,
+    sundayMassTime,
+    weekdayMassTime,
+  } = intention;
 
   const { bookedByName, email, phoneNumber } = bookedByDetails;
 
@@ -36,6 +45,10 @@ const AdminInitialBooking = ({
         handleDateChange={handleDateChange}
         textAreaPlaceholder="Write the prayer request *"
         canUseCurrentDate={canUseCurrentDate}
+        sundayMassTime={sundayMassTime}
+        weekdayMassTime={weekdayMassTime}
+        handleSundayDropdownChange={handleSundayDropdownChange}
+        handleWeekdayDropdownChange={handleWeekdayDropdownChange}
       />
 
       <ButtonSection handleCancel={handleCancel} handleSave={handleSave} />

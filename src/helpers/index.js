@@ -3,6 +3,40 @@ import moment from "moment";
 
 export const ADMIN_ACCESS_TOKEN = "access-token";
 
+export const sundayExists = (date1, date2) => {
+  let sundayFound = false;
+
+  while (date1 <= date2) {
+    var day = date1.getDay();
+    sundayFound = day === 0;
+
+    if (sundayFound) {
+      return true;
+    }
+
+    date1.setDate(date1.getDate() + 1);
+  }
+  return false;
+};
+
+export const weekdayExists = (date1, date2) => {
+  let weekdayFound = false;
+
+  while (date1 <= date2) {
+    var day = date1.getDay();
+
+    weekdayFound = day > 0;
+
+    if (weekdayFound) {
+      return true;
+    }
+
+    date1.setDate(date1.getDate() + 1);
+  }
+
+  return false;
+};
+
 export const createIntention = () => ({
   massIntention: {
     value: "",
@@ -18,6 +52,14 @@ export const createIntention = () => ({
   },
   endDate: {
     value: null,
+    error: "",
+  },
+  weekdayMassTime: {
+    value: "",
+    error: "",
+  },
+  sundayMassTime: {
+    value: "",
     error: "",
   },
   id: uuidv4(),
@@ -38,6 +80,40 @@ export const createBookedBy = () => ({
   },
 });
 
+export const sundayMasses = [
+  {
+    label: "06:30am",
+    value: "06:30am",
+  },
+  {
+    label: "08:30am",
+    value: "08:30am",
+  },
+  {
+    label: "11:00am",
+    value: "11:00am",
+  },
+  {
+    label: "06:30pm",
+    value: "06:30pm",
+  },
+];
+
+export const weekdayMasses = [
+  {
+    label: "06:30am",
+    value: "06:30am",
+  },
+  {
+    label: "12:30pm",
+    value: "12:30pm",
+  },
+  {
+    label: "06:30pm",
+    value: "06:30pm",
+  },
+];
+
 export const ERRORS = {
   name: "Who is this Intention being booked for?",
   email: "Email is required",
@@ -49,6 +125,8 @@ export const ERRORS = {
   password: "Password is required",
   confirmPassword:
     "Confirm Password is required and must be equal to the password",
+  weekdayMassTime: "Please select a mass for your intention to be read",
+  sundayMassTime: "Please select a mass for your intention to be read",
 };
 
 export const isValidEmail = (text) => {
@@ -69,6 +147,7 @@ export const validateInputs = (intention) => {
   const updatedIntention = { ...intention };
   const keys = Object.keys(intention);
   const dates = ["startDate", "endDate"];
+  const massTimes = ["weekdayMassTime", "sundayMassTime"];
   let errorExists = false;
 
   for (const key of keys) {
@@ -77,7 +156,9 @@ export const validateInputs = (intention) => {
     const value = intention[key].value;
 
     if (
-      (!dates.includes(key) && (!value || !value.trim())) ||
+      (!dates.includes(key) &&
+        (!value || !value.trim()) &&
+        !massTimes.includes(key)) ||
       (dates.includes(key) && value === null)
     ) {
       updatedIntention[key].error = ERRORS[key];
@@ -95,6 +176,36 @@ export const validateInputs = (intention) => {
       if (!isValidPhoneNumber(value)) {
         updatedIntention[key].error = ERRORS[key];
         errorExists = true;
+      }
+    }
+
+    if (key === "sundayMassTime") {
+      if (intention.startDate.value && intention.startDate.value) {
+        if (
+          sundayExists(
+            intention.startDate.value.toDate(),
+            intention.endDate.value.toDate()
+          ) &&
+          value === ""
+        ) {
+          updatedIntention[key].error = ERRORS[key];
+          errorExists = true;
+        }
+      }
+    }
+
+    if (key === "weekdayMassTime") {
+      if (intention.startDate.value && intention.startDate.value) {
+        if (
+          weekdayExists(
+            intention.startDate.value.toDate(),
+            intention.endDate.value.toDate()
+          ) &&
+          value === ""
+        ) {
+          updatedIntention[key].error = ERRORS[key];
+          errorExists = true;
+        }
       }
     }
   }

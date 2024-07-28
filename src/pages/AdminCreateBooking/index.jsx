@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 
-import InitialBooking from "../../containers/AdminInitialBooking";
+import AdminInitialBooking from "../../containers/AdminInitialBooking";
 import Checkout from "../../containers/Checkout";
 import { BookingController } from "../../controllers";
 
@@ -20,13 +20,15 @@ export default function AdminCreateBooking() {
     setIntentions,
     activeStep,
     handleDeleteIntention,
+    handleSundayDropdownChange,
+    handleWeekdayDropdownChange,
   } = BookingController(true);
 
   return (
     <Box>
       <>
         {activeStep === 0 && (
-          <InitialBooking
+          <AdminInitialBooking
             intention={intention}
             bookedByDetails={bookedByDetails}
             handleIntentionInputChange={handleIntentionInputChange}
@@ -35,6 +37,8 @@ export default function AdminCreateBooking() {
             handleSave={handleSave}
             handleCancel={handleReset}
             canUseCurrentDate={canUseCurrentDate}
+            handleSundayDropdownChange={handleSundayDropdownChange}
+            handleWeekdayDropdownChange={handleWeekdayDropdownChange}
           />
         )}
         {activeStep === 1 && (
@@ -51,6 +55,8 @@ export default function AdminCreateBooking() {
             setIntentions={setIntentions}
             handleDeleteIntention={handleDeleteIntention}
             handleReset={handleReset}
+            handleSundayDropdownChange={handleSundayDropdownChange}
+            handleWeekdayDropdownChange={handleWeekdayDropdownChange}
             admin
           />
         )}
