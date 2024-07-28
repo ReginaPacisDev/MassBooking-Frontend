@@ -140,6 +140,8 @@ export const MassBookingsController = () => {
         { key: "startDate", header: "Start Date" },
         { key: "endDate", header: "End Date" },
         { key: "massIntention", header: "Mass Intention" },
+        { key: "sundayMassTime", header: "Sunday Mass Time" },
+        { key: "weekdayMassTime", header: "Weekday Mass Time" },
       ];
 
       worksheet.columns = intentionsColumns;

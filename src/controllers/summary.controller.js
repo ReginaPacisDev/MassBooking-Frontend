@@ -206,7 +206,7 @@ export const SummaryController = ({
             weekdayMassTime: massIntention.weekdayMassTime.value,
           }),
           ...(massIntention.sundayMassTime.value && {
-            weekdayMassTime: massIntention.sundayMassTime.value,
+            sundayMassTime: massIntention.sundayMassTime.value,
           }),
           amountPaid: getOffering(
             massIntention.startDate.value,

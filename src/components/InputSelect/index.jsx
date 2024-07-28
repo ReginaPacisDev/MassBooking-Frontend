@@ -45,6 +45,7 @@ const InputSelect = ({
   return (
     <StyledDropdown
       value={selectedValue}
+      displayEmpty
       onChange={handleDropdownChange}
     >
       <MenuItem value="" disabled>
