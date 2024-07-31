@@ -45,6 +45,11 @@ const MassBooking = () => {
                   label="Amount Paid"
                   value={intention.amountPaid}
                 />
+
+                <DisabledInputContainer
+                  label="Created By"
+                  value={intention.createdBy}
+                />
               </div>
 
               <h3 className="text-xl mb-5">Intention For</h3>

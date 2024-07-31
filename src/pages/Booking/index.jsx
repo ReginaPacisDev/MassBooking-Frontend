@@ -22,6 +22,8 @@ export default function Booking() {
     activeStep,
     setActiveStep,
     handleDeleteIntention,
+    handleSundayDropdownChange,
+    handleWeekdayDropdownChange,
   } = BookingController();
 
   return (
@@ -37,6 +39,8 @@ export default function Booking() {
             handleSave={handleSave}
             handleCancel={handleReset}
             canUseCurrentDate={canUseCurrentDate}
+            handleSundayDropdownChange={handleSundayDropdownChange}
+            handleWeekdayDropdownChange={handleWeekdayDropdownChange}
           />
         )}
         {activeStep === 1 && (
@@ -53,6 +57,8 @@ export default function Booking() {
             setIntentions={setIntentions}
             handleDeleteIntention={handleDeleteIntention}
             handleReset={handleReset}
+            handleSundayDropdownChange={handleSundayDropdownChange}
+            handleWeekdayDropdownChange={handleWeekdayDropdownChange}
           />
         )}
         {activeStep === 2 && (

@@ -23,6 +23,8 @@ const Checkout = ({
   setIntentions,
   handleDeleteIntention,
   handleReset,
+  handleSundayDropdownChange,
+  handleWeekdayDropdownChange,
   admin,
 }) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -53,7 +55,14 @@ const Checkout = ({
     }
   };
 
-  const { name, startDate, endDate, massIntention } = intention;
+  const {
+    name,
+    startDate,
+    endDate,
+    massIntention,
+    sundayMassTime,
+    weekdayMassTime,
+  } = intention;
 
   return (
     <div className="mt-5 pt-5 font-Museo">
@@ -78,7 +87,11 @@ const Checkout = ({
               massIntention={massIntention}
               startDate={startDate}
               endDate={endDate}
+              sundayMassTime={sundayMassTime}
+              weekdayMassTime={weekdayMassTime}
               handleDateChange={handleDateChange}
+              handleSundayDropdownChange={handleSundayDropdownChange}
+              handleWeekdayDropdownChange={handleWeekdayDropdownChange}
             />
 
             <ButtonSection

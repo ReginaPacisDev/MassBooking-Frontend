@@ -79,14 +79,17 @@ const ManagePayments = () => {
         <NoIntentions />
       ) : (
         <div className="lg:flex flex-wrap gap-[5%]">
-          {intentions.map(({ bookedBy, amountPaid, totalMassesBooked }) => (
-            <PaymentStat
-              bookedBy={bookedBy}
-              amountPaid={amountPaid}
-              numberOfIntentions={totalMassesBooked}
-              key={`${bookedBy}-${amountPaid}`}
-            />
-          ))}
+          {intentions.map(
+            ({ bookedBy, amountPaid, totalMassesBooked, createdBy }) => (
+              <PaymentStat
+                bookedBy={bookedBy}
+                amountPaid={amountPaid}
+                numberOfIntentions={totalMassesBooked}
+                key={`${bookedBy}-${amountPaid}`}
+                createdBy={createdBy}
+              />
+            )
+          )}
         </div>
       )}
 

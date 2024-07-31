@@ -6,7 +6,14 @@ import Input from "../Input";
 import InputContainer from "../InputContainer";
 import Editable from "../Editable";
 import DatePicker from "../Datepicker";
-import { getOffering, numberWithCommas } from "../../helpers";
+import {
+  getOffering,
+  numberWithCommas,
+  sundayMasses,
+  weekdayMasses,
+} from "../../helpers";
+import { IntentionController } from "../../controllers/intention.controller";
+import InputSelect from "../InputSelect";
 
 const Item = ({
   intention,
@@ -15,7 +22,14 @@ const Item = ({
   index,
   handleDeleteIntention,
   intentions,
+  handleSundayDropdownChange,
+  handleWeekdayDropdownChange,
 }) => {
+  const { sundayFound, weekdayFound } = IntentionController(
+    intention.startDate,
+    intention.endDate
+  );
+
   const offering = getOffering(
     intention.startDate.value,
     intention.endDate.value
@@ -78,6 +92,33 @@ const Item = ({
           </Editable>
         </InputContainer>
       </div>
+
+      {sundayFound && (
+        <InputContainer error={intention.sundayMassTime.error}>
+          <Editable>
+            <InputSelect
+              dropdownItems={sundayMasses}
+              selectedValue={intention.sundayMassTime.value}
+              handleDropdownChange={handleSundayDropdownChange(intention.id)}
+              placeholder="Sunday Mass Time *"
+            />
+          </Editable>
+        </InputContainer>
+      )}
+
+      {weekdayFound && (
+        <InputContainer error={intention.weekdayMassTime.error}>
+          <Editable>
+            <InputSelect
+              dropdownItems={weekdayMasses}
+              selectedValue={intention.weekdayMassTime.value}
+              handleDropdownChange={handleWeekdayDropdownChange(intention.id)}
+              placeholder="Weekday / Saturday Mass Time *"
+            />
+          </Editable>
+        </InputContainer>
+      )}
+
       <div>
         <SectionHeader label="Price" />
 

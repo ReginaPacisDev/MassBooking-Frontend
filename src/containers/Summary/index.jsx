@@ -30,12 +30,15 @@ const Summary = ({
     triggerPaymentModal,
     handleSuccess,
     openLoader,
+    handleSundayDropdownChange,
+    handleWeekdayDropdownChange,
   } = SummaryController({
     intentions,
     bookedBy,
     setIntentions,
     handleNext,
     handleReset,
+    admin,
   });
 
   const [errorExists, setErrorExists] = useState(false);
@@ -108,6 +111,8 @@ const Summary = ({
               index={index}
               handleDeleteIntention={handleDeleteIntention}
               intentions={intentions}
+              handleSundayDropdownChange={handleSundayDropdownChange}
+              handleWeekdayDropdownChange={handleWeekdayDropdownChange}
             />
           ))}
         </div>
