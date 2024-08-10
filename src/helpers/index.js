@@ -3,6 +3,8 @@ import moment from "moment";
 
 export const ADMIN_ACCESS_TOKEN = "access-token";
 
+export const TIMEZONE = "Africa/Lagos";
+
 export const sundayExists = (date1, date2) => {
   let sundayFound = false;
 

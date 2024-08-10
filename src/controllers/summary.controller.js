@@ -1,5 +1,5 @@
 import axios from "axios";
-import moment from "moment";
+import moment from "moment-timezone";
 import { useState } from "react";
 import { usePaystackPayment } from "react-paystack";
 import { useSnackbar } from "notistack";
@@ -11,6 +11,7 @@ import {
   stringifySnackBarProps,
   getTotalPrice,
   getPaystackTotal,
+  TIMEZONE,
 } from "../helpers";
 import { setSuccessResponseData } from "../store/bookings/slice";
 
@@ -94,7 +95,7 @@ export const SummaryController = ({
 
     let updatedIntention = { ...foundIntention, [type]: { error: "" } };
 
-    const today = moment();
+    const today = moment().utc().tz(TIMEZONE);
 
     if (!value.isValid()) {
       updatedIntention = {

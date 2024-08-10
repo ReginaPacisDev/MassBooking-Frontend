@@ -12,6 +12,7 @@ import {
   getCount,
   ADMIN_ACCESS_TOKEN,
   getFileName,
+  TIMEZONE,
 } from "../helpers";
 
 const PAGE_SIZE = 10;
@@ -40,7 +41,7 @@ export const MassBookingsController = () => {
   };
 
   const handleDateChange = (type) => (newDate) => {
-    const normalizedDate = newDate.utc(true);
+    const normalizedDate = newDate.utc().tz(TIMEZONE);
 
     if (type === "startDate") {
       setStartDate(normalizedDate);

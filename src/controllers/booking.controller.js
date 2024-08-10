@@ -1,7 +1,12 @@
 import { useState } from "react";
-import moment from "moment";
+import moment from "moment-timezone";
 
-import { createBookedBy, createIntention, validateInputs } from "../helpers";
+import {
+  createBookedBy,
+  createIntention,
+  validateInputs,
+  TIMEZONE,
+} from "../helpers";
 import { useInterval } from "../hooks";
 
 export const BookingController = (admin) => {
@@ -30,7 +35,7 @@ export const BookingController = (admin) => {
   };
 
   const handleDateChange = (type) => (newDate) => {
-    const normalizedDate = newDate.utc(true);
+    const normalizedDate = newDate.utc().tz(TIMEZONE);
     const updatedIntention = { ...intention };
 
     if (type === "startDate") {
@@ -121,9 +126,13 @@ export const BookingController = (admin) => {
   };
 
   useInterval(() => {
-    const currentTime = moment();
+    const currentTime = moment().tz(TIMEZONE);
 
-    if (currentTime.isAfter(moment("14:00:00", "HH:mm:ss"))) {
+    if (
+      currentTime.isAfter(
+        moment("14:00:00", "HH:mm:ss").utc().tz(TIMEZONE).subtract(1, "day")
+      )
+    ) {
       setCanUseCurrentDate(false);
     }
   }, 1000);

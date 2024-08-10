@@ -8,6 +8,7 @@ import {
   getErrorMessage,
   stringifySnackBarProps,
   ADMIN_ACCESS_TOKEN,
+  TIMEZONE,
 } from "../helpers";
 
 const PAGE_SIZE = 9;
@@ -35,7 +36,7 @@ export const ManagePaymentsController = () => {
   };
 
   const handleDateChange = (newDate) => {
-    const normalizedDate = newDate.utc(true);
+    const normalizedDate = newDate.utc().tz(TIMEZONE);
     setStartDate(normalizedDate);
     setSelectedPeriod("");
     setStartIndex(0);

@@ -1,6 +1,6 @@
-import moment from "moment";
+import moment from "moment-timezone";
 
-import { formatTime } from "../../helpers";
+import { formatTime, TIMEZONE } from "../../helpers";
 import Calendar from "../../assets/images/calendar.svg";
 
 const generateIntentionOrTruncate = (intention) => {
@@ -13,7 +13,7 @@ const IntentionCard = ({ name, startDate, massIntention, createdAt }) => {
       <div className="flex justify-between mb-3">
         <h5 className="text-customBlack-200 text-base font-Museo">{name}</h5>
         <p className="text-customBlack-400 text-sm font-Satoshi font-light">
-          {moment(createdAt).fromNow()}
+          {moment(createdAt).utc().tz(TIMEZONE).fromNow()}
         </p>
       </div>
       <span className="text-sm font-light font-Satoshi text-customBlack-200 px-2 py-1 mb-3 bg-customPink-100 rounded-xl">{`Scheduled to be read on ${formatTime(

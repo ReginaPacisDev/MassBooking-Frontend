@@ -1,11 +1,11 @@
-import moment from "moment";
+import moment from "moment-timezone";
 import DatePicker from "../Datepicker";
 import Input from "../Input";
 import InputContainer from "../InputContainer";
 import SectionHeader from "../SectionHeader";
 import InputSelect from "../InputSelect";
 import { IntentionController } from "../../controllers/intention.controller";
-import { sundayMasses, weekdayMasses } from "../../helpers";
+import { sundayMasses, weekdayMasses, TIMEZONE } from "../../helpers";
 
 const Intention = ({
   name,
@@ -22,6 +22,9 @@ const Intention = ({
   handleWeekdayDropdownChange,
 }) => {
   const { sundayFound, weekdayFound } = IntentionController(startDate, endDate);
+
+  const momentTimeZone = moment().utc().tz(TIMEZONE);
+
   return (
     <div className="pt-4">
       <SectionHeader label="INTENTION FOR" />
@@ -60,8 +63,8 @@ const Intention = ({
             placeholder="Start Date"
             minDate={
               canUseCurrentDate
-                ? moment().toDate()
-                : moment().add(1, "day").toDate()
+                ? momentTimeZone.toDate()
+                : momentTimeZone.add(2, "days").toDate()
             }
             addborderbottom="true"
           />
