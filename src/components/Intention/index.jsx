@@ -64,7 +64,7 @@ const Intention = ({
             minDate={
               canUseCurrentDate
                 ? momentTimeZone.toDate()
-                : momentTimeZone.add(2, "days").toDate()
+                : momentTimeZone.add(1, "days").toDate()
             }
             addborderbottom="true"
           />

@@ -129,9 +129,7 @@ export const BookingController = (admin) => {
     const currentTime = moment().tz(TIMEZONE);
 
     if (
-      currentTime.isAfter(
-        moment("14:00:00", "HH:mm:ss").utc().tz(TIMEZONE).subtract(1, "day")
-      )
+      currentTime.isAfter(moment("14:00:00", "HH:mm:ss").utc().tz(TIMEZONE))
     ) {
       setCanUseCurrentDate(false);
     }
