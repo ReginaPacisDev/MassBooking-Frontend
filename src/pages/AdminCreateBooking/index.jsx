@@ -7,7 +7,7 @@ import { BookingController } from "../../controllers";
 export default function AdminCreateBooking() {
   const {
     intention,
-    canUseCurrentDate,
+    canUseNextDayDate,
     intentions,
     bookedByDetails,
     handleIntentionInputChange,
@@ -36,7 +36,7 @@ export default function AdminCreateBooking() {
             handleDateChange={handleDateChange}
             handleSave={handleSave}
             handleCancel={handleReset}
-            canUseCurrentDate={canUseCurrentDate}
+            canUseNextDayDate={canUseNextDayDate}
             handleSundayDropdownChange={handleSundayDropdownChange}
             handleWeekdayDropdownChange={handleWeekdayDropdownChange}
           />

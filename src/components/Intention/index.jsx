@@ -15,7 +15,7 @@ const Intention = ({
   handleChange,
   handleDateChange,
   textAreaPlaceholder,
-  canUseCurrentDate,
+  canUseNextDayDate,
   sundayMassTime,
   weekdayMassTime,
   handleSundayDropdownChange,
@@ -62,9 +62,9 @@ const Intention = ({
             handleChange={handleDateChange("startDate")}
             placeholder="Start Date"
             minDate={
-              canUseCurrentDate
-                ? momentTimeZone.toDate()
-                : momentTimeZone.add(1, "days").toDate()
+              canUseNextDayDate
+                ? momentTimeZone.add(1, "days").toDate()
+                : momentTimeZone.add(2, "days").toDate()
             }
             addborderbottom="true"
           />

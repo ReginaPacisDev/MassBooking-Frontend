@@ -18,7 +18,7 @@ export const BookingController = (admin) => {
 
   const [intention, setIntention] = useState(createIntention());
 
-  const [canUseCurrentDate, setCanUseCurrentDate] = useState(true);
+  const [canUseNextDayDate, setCanUseNextDayDate] = useState(true);
 
   const handleIntentionInputChange = (e) => {
     const { name, value } = e.target;
@@ -131,13 +131,13 @@ export const BookingController = (admin) => {
     if (
       currentTime.isAfter(moment("14:00:00", "HH:mm:ss").utc().tz(TIMEZONE))
     ) {
-      setCanUseCurrentDate(false);
+      setCanUseNextDayDate(false);
     }
   }, 1000);
 
   return {
     intention,
-    canUseCurrentDate,
+    canUseNextDayDate,
     bookedByDetails,
     handleIntentionInputChange,
     handleBookedByInputChange,
