@@ -65,6 +65,11 @@ export const createIntention = () => ({
     error: "",
   },
   id: uuidv4(),
+  showTextArea: false,
+  textAreaIntention: {
+    value: "",
+    error: "",
+  },
 });
 
 export const createBookedBy = () => ({
@@ -116,6 +121,19 @@ export const weekdayMasses = [
   },
 ];
 
+export const massIntentions = [
+  "Birthday Thanksgiving",
+  "Child Thanksgiving",
+  "Wedding Anniversary Thanksgiving",
+  "Special Intentions",
+  "God's Blessings, Guidance and Protection",
+  "Divine Healing",
+  "Journey Mercies",
+  "Repose of the Souls Departed",
+  "Novena Mass",
+  "Others (please state)",
+];
+
 export const ERRORS = {
   name: "Who is this Intention being booked for?",
   email: "Email is required",
@@ -129,6 +147,7 @@ export const ERRORS = {
     "Confirm Password is required and must be equal to the password",
   weekdayMassTime: "Please select a mass for your intention to be read",
   sundayMassTime: "Please select a mass for your intention to be read",
+  textAreaIntention: "Mass Intention is required",
 };
 
 export const isValidEmail = (text) => {
@@ -153,7 +172,12 @@ export const validateInputs = (intention) => {
   let errorExists = false;
 
   for (const key of keys) {
-    if (key === "id") continue;
+    if (
+      key === "id" ||
+      (key === "textAreaIntention" && !intention.showTextArea) ||
+      key === "showTextArea"
+    )
+      continue;
 
     const value = intention[key].value;
 

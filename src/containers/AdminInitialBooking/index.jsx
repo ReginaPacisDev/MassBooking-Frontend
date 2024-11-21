@@ -21,6 +21,8 @@ const AdminInitialBooking = ({
     endDate,
     sundayMassTime,
     weekdayMassTime,
+    textAreaIntention,
+    showTextArea,
   } = intention;
 
   const { bookedByName, email, phoneNumber } = bookedByDetails;
@@ -47,8 +49,10 @@ const AdminInitialBooking = ({
         canUseNextDayDate={canUseNextDayDate}
         sundayMassTime={sundayMassTime}
         weekdayMassTime={weekdayMassTime}
+        textAreaIntention={textAreaIntention}
         handleSundayDropdownChange={handleSundayDropdownChange}
         handleWeekdayDropdownChange={handleWeekdayDropdownChange}
+        showTextArea={showTextArea}
       />
 
       <ButtonSection handleCancel={handleCancel} handleSave={handleSave} />

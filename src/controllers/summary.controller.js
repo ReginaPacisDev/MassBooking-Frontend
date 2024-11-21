@@ -38,10 +38,22 @@ export const SummaryController = ({
 
     const foundIntention = intentionsCopy[index];
 
-    const updatedIntention = {
+    let updatedIntention = {
       ...foundIntention,
       [name]: { value, error: "" },
     };
+
+    if (name === "massIntention" && value === "Others (please state)") {
+      updatedIntention = { ...updatedIntention, showTextArea: true };
+    }
+
+    if (name === "massIntention" && value !== "Others (please state)") {
+      updatedIntention = {
+        ...updatedIntention,
+        showTextArea: false,
+        textAreaIntention: { value: "", error: "" },
+      };
+    }
 
     intentionsCopy[index] = updatedIntention;
 
@@ -197,7 +209,9 @@ export const SummaryController = ({
       .post(`${import.meta.env.VITE_APP_API_URL}/bookings`, {
         bookings: intentions.map((massIntention) => ({
           name: massIntention.name.value,
-          massIntention: massIntention.massIntention.value,
+          massIntention:
+            massIntention.textAreaIntention.value ||
+            massIntention.massIntention.value,
           startDate: massIntention.startDate.value.unix(),
           endDate: massIntention.endDate.value.unix(),
           bookedBy: bookedBy.bookedByName.value,

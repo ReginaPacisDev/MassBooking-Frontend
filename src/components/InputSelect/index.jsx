@@ -41,12 +41,14 @@ const InputSelect = ({
   selectedValue,
   handleDropdownChange,
   placeholder,
+  name,
 }) => {
   return (
     <StyledDropdown
       value={selectedValue}
       displayEmpty
       onChange={handleDropdownChange}
+      name={name}
     >
       <MenuItem value="" disabled>
         {placeholder}

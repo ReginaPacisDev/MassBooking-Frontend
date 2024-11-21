@@ -79,7 +79,7 @@ const Summary = ({
       <>
         <SectionHeader label="SUMMARY" />
 
-        <div className="w-full lg:w-[48%]">
+        <div className="w-full xl:w-[48%]">
           <BookedBy
             bookedByName={bookedBy.bookedByName}
             handleChange={handleBookedByInputChange}
@@ -118,7 +118,7 @@ const Summary = ({
         </div>
 
         <div
-          className={`${intentions.length > 1 ? "w-full" : "lg:w-[48%]"} py-4`}
+          className={`${intentions.length > 1 ? "w-full" : "xl:w-[48%]"} py-4`}
         >
           <SectionHeader label={`Total${admin ? "" : " + Bank Charges"}`} />
           <DisabledInput value={`₦ ${numberWithCommas(displayedPrice)}`} />
@@ -151,7 +151,7 @@ const Summary = ({
           <div className="mb-5">
             <SectionHeader label="PAYMENT METHOD" />
 
-            <div className="flex text-left items-center border-[1px] p-3 w-full lg:w-[48%] mb-4 border-customBlack-700 rounded-lg">
+            <div className="flex text-left items-center border-[1px] p-3 w-full xl:w-[48%] mb-4 border-customBlack-700 rounded-lg">
               <img src={PaystackIcon} alt="Pay Stack Icon" />
               <div className="ml-3">
                 <h6 className="text-lg">Paystack</h6>

@@ -22,12 +22,14 @@ const InitialBooking = ({
     endDate,
     sundayMassTime,
     weekdayMassTime,
+    textAreaIntention,
+    showTextArea,
   } = intention;
 
   const { bookedByName, email, phoneNumber } = bookedByDetails;
 
   return (
-    <section className="pt-4 font-Museo lg:w-[50%] 2xl:w-[40%]">
+    <section className="pt-4 font-Museo lg:w-[60%] xl:w-[50%] 2xl:w-[40%]">
       <Background />
       <h3 className="mt-5 text-xl lg:text-3xl mb-3 text-customBlack-200">
         Please fill this form to book Mass
@@ -59,6 +61,8 @@ const InitialBooking = ({
         canUseNextDayDate={canUseNextDayDate}
         handleSundayDropdownChange={handleSundayDropdownChange}
         handleWeekdayDropdownChange={handleWeekdayDropdownChange}
+        textAreaIntention={textAreaIntention}
+        showTextArea={showTextArea}
       />
 
       <ButtonSection handleCancel={handleCancel} handleSave={handleSave} />

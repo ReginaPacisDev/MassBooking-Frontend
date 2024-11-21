@@ -121,7 +121,7 @@ const Checkout = ({
       </div>
 
       {noExpanded && (
-        <div className="lg:absolute top-[100px] mb-5 right-[4%] w-full lg:w-[446px]">
+        <div className="xl:absolute top-[100px] mb-5 right-[4%] w-full lg:w-[446px]">
           <PriceTable />
         </div>
       )}
