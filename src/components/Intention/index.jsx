@@ -5,7 +5,12 @@ import InputContainer from "../InputContainer";
 import SectionHeader from "../SectionHeader";
 import InputSelect from "../InputSelect";
 import { IntentionController } from "../../controllers/intention.controller";
-import { sundayMasses, weekdayMasses, TIMEZONE } from "../../helpers";
+import {
+  sundayMasses,
+  weekdayMasses,
+  TIMEZONE,
+  massIntentions,
+} from "../../helpers";
 
 const Intention = ({
   name,
@@ -18,6 +23,8 @@ const Intention = ({
   canUseNextDayDate,
   sundayMassTime,
   weekdayMassTime,
+  textAreaIntention,
+  showTextArea,
   handleSundayDropdownChange,
   handleWeekdayDropdownChange,
 }) => {
@@ -41,17 +48,32 @@ const Intention = ({
       </InputContainer>
 
       <InputContainer error={massIntention.error}>
-        <textarea
+        <InputSelect
+          dropdownItems={massIntentions.map((intention) => ({
+            label: intention,
+            value: intention,
+          }))}
+          selectedValue={massIntention.value}
+          handleDropdownChange={handleChange}
+          placeholder="Select An Intention"
           name="massIntention"
-          onChange={handleChange}
-          value={massIntention.value}
-          placeholder={textAreaPlaceholder || "Write your prayer request *"}
-          maxLength={500}
-          className="p-3 pb-0 mt-4 border-solid border border-customBlack-300 w-full text-customGray-100 placeholder-customGray-100 text-base rounded-lg h-[183px]"
         />
       </InputContainer>
 
-      <p className="text-sm text-customBlack-200 mb-5">
+      {showTextArea && (
+        <InputContainer error={textAreaIntention.error}>
+          <textarea
+            name="textAreaIntention"
+            onChange={handleChange}
+            value={textAreaIntention.value}
+            placeholder={textAreaPlaceholder || "Write your prayer request *"}
+            maxLength={500}
+            className="p-3 pb-0 mt-4 border-solid border border-customBlack-300 w-full text-customGray-100 placeholder-customGray-100 text-base rounded-lg h-[183px]"
+          />
+        </InputContainer>
+      )}
+
+      <p className="text-sm text-customBlack-200 mb-2">
         Select a start and end date for the Mass intention to be read
       </p>
 

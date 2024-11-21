@@ -11,6 +11,7 @@ import {
   numberWithCommas,
   sundayMasses,
   weekdayMasses,
+  massIntentions,
 } from "../../helpers";
 import { IntentionController } from "../../controllers/intention.controller";
 import InputSelect from "../InputSelect";
@@ -36,7 +37,7 @@ const Item = ({
   );
 
   return (
-    <div className="w-full lg:w-[48%]">
+    <div className="w-full xl:w-[48%]">
       <h6 className="mb-5 capitalize text-sm">
         {converter.toWordsOrdinal(index + 1)} Intention
       </h6>
@@ -54,17 +55,34 @@ const Item = ({
       </InputContainer>
 
       <InputContainer error={intention.massIntention.error}>
-        <Editable textArea>
-          <textarea
+        <Editable>
+          <InputSelect
+            dropdownItems={massIntentions.map((intention) => ({
+              label: intention,
+              value: intention,
+            }))}
+            selectedValue={intention.massIntention.value}
+            handleDropdownChange={handleInputChange(intention.id)}
+            placeholder="Select An Intention"
             name="massIntention"
-            onChange={handleInputChange(intention.id)}
-            value={intention.massIntention.value}
-            placeholder="Write your prayer request *"
-            maxLength={500}
-            className="p-3 pb-0 mt-4 border-solid border border-customBlack-300 w-full text-customGray-100 placeholder-customGray-100 text-base rounded-lg h-[183px]"
           />
         </Editable>
       </InputContainer>
+
+      {intention.showTextArea && (
+        <InputContainer error={intention.textAreaIntention.error}>
+          <Editable textArea>
+            <textarea
+              name="textAreaIntention"
+              onChange={handleInputChange(intention.id)}
+              value={intention.textAreaIntention.value}
+              placeholder="Write your prayer request *"
+              maxLength={500}
+              className="p-3 pb-0 mt-4 border-solid border border-customBlack-300 w-full text-customGray-100 placeholder-customGray-100 text-base rounded-lg h-[183px]"
+            />
+          </Editable>
+        </InputContainer>
+      )}
 
       <div className="lg:flex justify-between mb-3">
         <InputContainer error={intention.startDate.error} halfWidth>

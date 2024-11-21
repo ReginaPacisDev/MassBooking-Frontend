@@ -21,9 +21,22 @@ export const BookingController = (admin) => {
   const [canUseNextDayDate, setCanUseNextDayDate] = useState(true);
 
   const handleIntentionInputChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
 
-    const updatedIntention = { ...intention, [name]: { value, error: "" } };
+    let updatedIntention = { ...intention, [name]: { value, error: "" } };
+
+    if (name === "massIntention" && value === "Others (please state)") {
+      updatedIntention = { ...updatedIntention, showTextArea: true };
+    }
+
+    if (name === "massIntention" && value !== "Others (please state)") {
+      updatedIntention = {
+        ...updatedIntention,
+        showTextArea: false,
+        textAreaIntention: { value: "", error: "" },
+      };
+    }
+
     setIntention(updatedIntention);
   };
 
