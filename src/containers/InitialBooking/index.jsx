@@ -14,6 +14,8 @@ const InitialBooking = ({
   handleCancel,
   handleSundayDropdownChange,
   handleWeekdayDropdownChange,
+  handleTuesdayDropdownChange,
+  handleSaturdayDropdownChange,
 }) => {
   const {
     name,
@@ -22,6 +24,8 @@ const InitialBooking = ({
     endDate,
     sundayMassTime,
     weekdayMassTime,
+    tuesdayMassTime,
+    saturdayMassTime,
     textAreaIntention,
     showTextArea,
   } = intention;
@@ -57,10 +61,14 @@ const InitialBooking = ({
         endDate={endDate}
         sundayMassTime={sundayMassTime}
         weekdayMassTime={weekdayMassTime}
+        tuesdayMassTime={tuesdayMassTime}
+        saturdayMassTime={saturdayMassTime}
         handleDateChange={handleDateChange}
         canUseNextDayDate={canUseNextDayDate}
         handleSundayDropdownChange={handleSundayDropdownChange}
         handleWeekdayDropdownChange={handleWeekdayDropdownChange}
+        handleTuesdayDropdownChange={handleTuesdayDropdownChange}
+        handleSaturdayDropdownChange={handleSaturdayDropdownChange}
         textAreaIntention={textAreaIntention}
         showTextArea={showTextArea}
       />

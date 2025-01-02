@@ -14,6 +14,7 @@ const Checkout = ({
   intention,
   intentions,
   bookedByDetails,
+  canUseNextDayDate,
   handleIntentionInputChange,
   handleBookedByInputChange,
   handleDateChange,
@@ -25,6 +26,8 @@ const Checkout = ({
   handleReset,
   handleSundayDropdownChange,
   handleWeekdayDropdownChange,
+  handleTuesdayDropdownChange,
+  handleSaturdayDropdownChange,
   admin,
 }) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -62,6 +65,8 @@ const Checkout = ({
     massIntention,
     sundayMassTime,
     weekdayMassTime,
+    tuesdayMassTime,
+    saturdayMassTime,
   } = intention;
 
   return (
@@ -89,9 +94,13 @@ const Checkout = ({
               endDate={endDate}
               sundayMassTime={sundayMassTime}
               weekdayMassTime={weekdayMassTime}
+              tuesdayMassTime={tuesdayMassTime}
+              saturdayMassTime={saturdayMassTime}
               handleDateChange={handleDateChange}
               handleSundayDropdownChange={handleSundayDropdownChange}
               handleWeekdayDropdownChange={handleWeekdayDropdownChange}
+              handleTuesdayDropdownChange={handleTuesdayDropdownChange}
+              handleSaturdayDropdownChange={handleSaturdayDropdownChange}
             />
 
             <ButtonSection
@@ -108,6 +117,7 @@ const Checkout = ({
           toggleExpanded={toggleExpanded}
         >
           <Summary
+            canUseNextDayDate={canUseNextDayDate}
             intentions={intentions}
             bookedBy={bookedByDetails}
             handleNext={handleNext}

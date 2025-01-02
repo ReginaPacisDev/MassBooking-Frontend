@@ -8,6 +8,8 @@ import { IntentionController } from "../../controllers/intention.controller";
 import {
   sundayMasses,
   weekdayMasses,
+  saturdayMasses,
+  tuesdayMasses,
   TIMEZONE,
   massIntentions,
 } from "../../helpers";
@@ -23,12 +25,17 @@ const Intention = ({
   canUseNextDayDate,
   sundayMassTime,
   weekdayMassTime,
+  tuesdayMassTime,
+  saturdayMassTime,
   textAreaIntention,
   showTextArea,
   handleSundayDropdownChange,
   handleWeekdayDropdownChange,
+  handleTuesdayDropdownChange,
+  handleSaturdayDropdownChange,
 }) => {
-  const { sundayFound, weekdayFound } = IntentionController(startDate, endDate);
+  const { sundayFound, weekdayFound, saturdayFound, tuesdayFound } =
+    IntentionController(startDate, endDate);
 
   const momentTimeZone = moment().utc().tz(TIMEZONE);
 
@@ -121,7 +128,29 @@ const Intention = ({
             dropdownItems={weekdayMasses}
             selectedValue={weekdayMassTime.value}
             handleDropdownChange={handleWeekdayDropdownChange}
-            placeholder="Weekday / Saturday Mass Time *"
+            placeholder="Weekday Mass Time *"
+          />
+        </InputContainer>
+      )}
+
+      {tuesdayFound && (
+        <InputContainer error={tuesdayMassTime.error}>
+          <InputSelect
+            dropdownItems={tuesdayMasses}
+            selectedValue={tuesdayMassTime.value}
+            handleDropdownChange={handleTuesdayDropdownChange}
+            placeholder="Tuesday Mass Time *"
+          />
+        </InputContainer>
+      )}
+
+      {saturdayFound && (
+        <InputContainer error={saturdayMassTime.error}>
+          <InputSelect
+            dropdownItems={saturdayMasses}
+            selectedValue={saturdayMassTime.value}
+            handleDropdownChange={handleSaturdayDropdownChange}
+            placeholder="Saturday Mass Time *"
           />
         </InputContainer>
       )}

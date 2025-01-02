@@ -22,6 +22,8 @@ export default function AdminCreateBooking() {
     handleDeleteIntention,
     handleSundayDropdownChange,
     handleWeekdayDropdownChange,
+    handleTuesdayDropdownChange,
+    handleSaturdayDropdownChange,
   } = BookingController(true);
 
   return (
@@ -39,6 +41,8 @@ export default function AdminCreateBooking() {
             canUseNextDayDate={canUseNextDayDate}
             handleSundayDropdownChange={handleSundayDropdownChange}
             handleWeekdayDropdownChange={handleWeekdayDropdownChange}
+            handleTuesdayDropdownChange={handleTuesdayDropdownChange}
+            handleSaturdayDropdownChange={handleSaturdayDropdownChange}
           />
         )}
         {activeStep === 1 && (
@@ -57,6 +61,8 @@ export default function AdminCreateBooking() {
             handleReset={handleReset}
             handleSundayDropdownChange={handleSundayDropdownChange}
             handleWeekdayDropdownChange={handleWeekdayDropdownChange}
+            handleTuesdayDropdownChange={handleTuesdayDropdownChange}
+            handleSaturdayDropdownChange={handleSaturdayDropdownChange}
             admin
           />
         )}

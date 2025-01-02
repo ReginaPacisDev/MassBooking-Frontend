@@ -49,7 +49,9 @@ export const BookingController = (admin) => {
 
   const handleDateChange = (type) => (newDate) => {
     const normalizedDate = newDate.utc().tz(TIMEZONE);
-    const updatedIntention = { ...intention };
+    const updatedIntention = {
+      ...intention,
+    };
 
     if (type === "startDate") {
       updatedIntention.startDate.value = normalizedDate;
@@ -82,6 +84,34 @@ export const BookingController = (admin) => {
     const updatedIntention = {
       ...intention,
       weekdayMassTime: {
+        value,
+        error: "",
+      },
+    };
+
+    setIntention(updatedIntention);
+  };
+
+  const handleTuesdayDropdownChange = (e) => {
+    const { value } = e.target;
+
+    const updatedIntention = {
+      ...intention,
+      tuesdayMassTime: {
+        value,
+        error: "",
+      },
+    };
+
+    setIntention(updatedIntention);
+  };
+
+  const handleSaturdayDropdownChange = (e) => {
+    const { value } = e.target;
+
+    const updatedIntention = {
+      ...intention,
+      saturdayMassTime: {
         value,
         error: "",
       },
@@ -166,5 +196,7 @@ export const BookingController = (admin) => {
     handleDeleteIntention,
     handleSundayDropdownChange,
     handleWeekdayDropdownChange,
+    handleTuesdayDropdownChange,
+    handleSaturdayDropdownChange,
   };
 };
