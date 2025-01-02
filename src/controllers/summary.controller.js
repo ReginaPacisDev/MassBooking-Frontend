@@ -261,31 +261,31 @@ export const SummaryController = ({
           phoneNumber: bookedBy.phoneNumber.value,
           ...(massIntention.weekdayMassTime.value &&
             weekdayExists(
-              massIntention.startDate.value,
-              massIntention.endDate.value
+              massIntention.startDate.value.toDate(),
+              massIntention.endDate.value.toDate()
             ) && {
               weekdayMassTime: massIntention.weekdayMassTime.value,
             }),
           ...(massIntention.sundayMassTime.value &&
             sundayExists(
-              massIntention.startDate.value,
-              massIntention.endDate.value
+              massIntention.startDate.value.toDate(),
+              massIntention.endDate.value.toDate()
             ) && {
               sundayMassTime: massIntention.sundayMassTime.value,
             }),
           ...(massIntention.tuesdayMassTime.value &&
             tuesdayExists(
-              massIntention.startDate.value,
-              massIntention.endDate.value
+              massIntention.startDate.value.toDate(),
+              massIntention.endDate.value.toDate()
             ) && {
-              tuesdayMassTime: massIntention.weekdayMassTime.value,
+              tuesdayMassTime: massIntention.tuesdayMassTime.value,
             }),
           ...(massIntention.saturdayMassTime.value &&
             saturdayExists(
-              massIntention.startDate.value,
-              massIntention.endDate.value
+              massIntention.startDate.value.toDate(),
+              massIntention.endDate.value.toDate()
             ) && {
-              saturdayMassTime: massIntention.sundayMassTime.value,
+              saturdayMassTime: massIntention.saturdayMassTime.value,
             }),
           amountPaid: getOffering(
             massIntention.startDate.value,
