@@ -92,11 +92,11 @@ export const createIntention = () => ({
     value: "",
     error: "",
   },
-  sundayMassTime: {
+  tuesdayMassTime: {
     value: "",
     error: "",
   },
-  tuesdayMassTime: {
+  sundayMassTime: {
     value: "",
     error: "",
   },
@@ -226,7 +226,12 @@ export const validateInputs = (intention) => {
   const updatedIntention = { ...intention };
   const keys = Object.keys(intention);
   const dates = ["startDate", "endDate"];
-  const massTimes = ["weekdayMassTime", "sundayMassTime"];
+  const massTimes = [
+    "weekdayMassTime",
+    "sundayMassTime",
+    "tuesdayMassTime",
+    "saturdayMassTime",
+  ];
   let errorExists = false;
 
   for (const key of keys) {
