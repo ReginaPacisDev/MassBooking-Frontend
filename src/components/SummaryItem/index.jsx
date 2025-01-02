@@ -1,4 +1,5 @@
 import converter from "number-to-words";
+import moment from "moment-timezone";
 
 import SectionHeader from "../SectionHeader";
 import DisabledInput from "../DisabledInput";
@@ -11,7 +12,10 @@ import {
   numberWithCommas,
   sundayMasses,
   weekdayMasses,
+  tuesdayMasses,
+  saturdayMasses,
   massIntentions,
+  TIMEZONE,
 } from "../../helpers";
 import { IntentionController } from "../../controllers/intention.controller";
 import InputSelect from "../InputSelect";
@@ -23,13 +27,16 @@ const Item = ({
   index,
   handleDeleteIntention,
   intentions,
+  canUseNextDayDate,
   handleSundayDropdownChange,
   handleWeekdayDropdownChange,
+  handleTuesdayDropdownChange,
+  handleSaturdayDropdownChange,
 }) => {
-  const { sundayFound, weekdayFound } = IntentionController(
-    intention.startDate,
-    intention.endDate
-  );
+  const { sundayFound, weekdayFound, saturdayFound, tuesdayFound } =
+    IntentionController(intention.startDate, intention.endDate);
+
+  const momentTimeZone = moment().utc().tz(TIMEZONE);
 
   const offering = getOffering(
     intention.startDate.value,
@@ -91,7 +98,11 @@ const Item = ({
               value={intention.startDate.value}
               handleChange={handleDateChange(intention.id)("startDate")}
               placeholder="Start Date"
-              minDate={Date.now()}
+              minDate={
+                canUseNextDayDate
+                  ? momentTimeZone.add(1, "days").toDate()
+                  : momentTimeZone.add(2, "days").toDate()
+              }
               addborderbottom="true"
             />
           </Editable>
@@ -131,7 +142,33 @@ const Item = ({
               dropdownItems={weekdayMasses}
               selectedValue={intention.weekdayMassTime.value}
               handleDropdownChange={handleWeekdayDropdownChange(intention.id)}
-              placeholder="Weekday / Saturday Mass Time *"
+              placeholder="Weekday Mass Time *"
+            />
+          </Editable>
+        </InputContainer>
+      )}
+
+      {tuesdayFound && (
+        <InputContainer error={intention.tuesdayMassTime.error}>
+          <Editable>
+            <InputSelect
+              dropdownItems={tuesdayMasses}
+              selectedValue={intention.tuesdayMassTime.value}
+              handleDropdownChange={handleTuesdayDropdownChange(intention.id)}
+              placeholder="Tuesday Mass Time *"
+            />
+          </Editable>
+        </InputContainer>
+      )}
+
+      {saturdayFound && (
+        <InputContainer error={intention.saturdayMassTime.error}>
+          <Editable>
+            <InputSelect
+              dropdownItems={saturdayMasses}
+              selectedValue={intention.saturdayMassTime.value}
+              handleDropdownChange={handleSaturdayDropdownChange(intention.id)}
+              placeholder="Saturday Mass Time *"
             />
           </Editable>
         </InputContainer>

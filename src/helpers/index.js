@@ -5,6 +5,38 @@ export const ADMIN_ACCESS_TOKEN = "access-token";
 
 export const TIMEZONE = "Africa/Lagos";
 
+export const saturdayExists = (date1, date2) => {
+  let saturdayFound = false;
+
+  while (date1 <= date2) {
+    var day = date1.getDay();
+    saturdayFound = day === 6;
+
+    if (saturdayFound) {
+      return true;
+    }
+
+    date1.setDate(date1.getDate() + 1);
+  }
+  return false;
+};
+
+export const tuesdayExists = (date1, date2) => {
+  let tuesdayFound = false;
+
+  while (date1 <= date2) {
+    var day = date1.getDay();
+    tuesdayFound = day === 0;
+
+    if (tuesdayFound) {
+      return true;
+    }
+
+    date1.setDate(date1.getDate() + 1);
+  }
+  return false;
+};
+
 export const sundayExists = (date1, date2) => {
   let sundayFound = false;
 
@@ -27,7 +59,7 @@ export const weekdayExists = (date1, date2) => {
   while (date1 <= date2) {
     var day = date1.getDay();
 
-    weekdayFound = day > 0;
+    weekdayFound = [1, 3, 4, 5].includes(day);
 
     if (weekdayFound) {
       return true;
@@ -60,7 +92,15 @@ export const createIntention = () => ({
     value: "",
     error: "",
   },
+  tuesdayMassTime: {
+    value: "",
+    error: "",
+  },
   sundayMassTime: {
+    value: "",
+    error: "",
+  },
+  saturdayMassTime: {
     value: "",
     error: "",
   },
@@ -93,16 +133,16 @@ export const sundayMasses = [
     value: "06:30am",
   },
   {
-    label: "08:30am",
-    value: "08:30am",
+    label: "08:20am",
+    value: "08:20am",
   },
   {
-    label: "11:00am",
-    value: "11:00am",
+    label: "10:40am",
+    value: "10:40am",
   },
   {
-    label: "06:30pm",
-    value: "06:30pm",
+    label: "06:00pm",
+    value: "06:00pm",
   },
 ];
 
@@ -118,6 +158,24 @@ export const weekdayMasses = [
   {
     label: "06:30pm",
     value: "06:30pm",
+  },
+];
+
+export const tuesdayMasses = [
+  {
+    label: "06:30am",
+    value: "06:30am",
+  },
+  {
+    label: "12:30pm",
+    value: "12:30pm",
+  },
+];
+
+export const saturdayMasses = [
+  {
+    label: "07:00am",
+    value: "07:00am",
   },
 ];
 
@@ -168,7 +226,12 @@ export const validateInputs = (intention) => {
   const updatedIntention = { ...intention };
   const keys = Object.keys(intention);
   const dates = ["startDate", "endDate"];
-  const massTimes = ["weekdayMassTime", "sundayMassTime"];
+  const massTimes = [
+    "weekdayMassTime",
+    "sundayMassTime",
+    "tuesdayMassTime",
+    "saturdayMassTime",
+  ];
   let errorExists = false;
 
   for (const key of keys) {
@@ -224,6 +287,36 @@ export const validateInputs = (intention) => {
       if (intention.startDate.value && intention.startDate.value) {
         if (
           weekdayExists(
+            intention.startDate.value.toDate(),
+            intention.endDate.value.toDate()
+          ) &&
+          value === ""
+        ) {
+          updatedIntention[key].error = ERRORS[key];
+          errorExists = true;
+        }
+      }
+    }
+
+    if (key === "tuesdayMassTime") {
+      if (intention.startDate.value && intention.startDate.value) {
+        if (
+          tuesdayExists(
+            intention.startDate.value.toDate(),
+            intention.endDate.value.toDate()
+          ) &&
+          value === ""
+        ) {
+          updatedIntention[key].error = ERRORS[key];
+          errorExists = true;
+        }
+      }
+    }
+
+    if (key === "saturdayMassTime") {
+      if (intention.startDate.value && intention.startDate.value) {
+        if (
+          saturdayExists(
             intention.startDate.value.toDate(),
             intention.endDate.value.toDate()
           ) &&

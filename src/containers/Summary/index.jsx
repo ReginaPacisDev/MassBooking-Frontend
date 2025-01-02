@@ -17,6 +17,7 @@ import {
 const Summary = ({
   intentions,
   bookedBy,
+  canUseNextDayDate,
   setIntentions,
   handleNext,
   handleBookedByInputChange,
@@ -32,6 +33,8 @@ const Summary = ({
     openLoader,
     handleSundayDropdownChange,
     handleWeekdayDropdownChange,
+    handleTuesdayDropdownChange,
+    handleSaturdayDropdownChange,
   } = SummaryController({
     intentions,
     bookedBy,
@@ -111,8 +114,11 @@ const Summary = ({
               index={index}
               handleDeleteIntention={handleDeleteIntention}
               intentions={intentions}
+              canUseNextDayDate={canUseNextDayDate}
               handleSundayDropdownChange={handleSundayDropdownChange}
               handleWeekdayDropdownChange={handleWeekdayDropdownChange}
+              handleTuesdayDropdownChange={handleTuesdayDropdownChange}
+              handleSaturdayDropdownChange={handleSaturdayDropdownChange}
             />
           ))}
         </div>

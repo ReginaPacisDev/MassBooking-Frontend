@@ -12,6 +12,10 @@ import {
   getTotalPrice,
   getPaystackTotal,
   TIMEZONE,
+  weekdayExists,
+  sundayExists,
+  tuesdayExists,
+  saturdayExists,
 } from "../helpers";
 import { setSuccessResponseData } from "../store/bookings/slice";
 
@@ -91,6 +95,44 @@ export const SummaryController = ({
     const updatedIntention = {
       ...foundIntention,
       weekdayMassTime: { value, error: "" },
+    };
+
+    intentionsCopy[index] = updatedIntention;
+
+    setIntentions(intentionsCopy);
+  };
+
+  const handleTuesdayDropdownChange = (id) => (e) => {
+    const { value } = e.target;
+
+    const intentionsCopy = [...intentions];
+
+    const index = intentionsCopy.findIndex((intention) => intention.id === id);
+
+    const foundIntention = intentionsCopy[index];
+
+    const updatedIntention = {
+      ...foundIntention,
+      tuesdayMassTime: { value, error: "" },
+    };
+
+    intentionsCopy[index] = updatedIntention;
+
+    setIntentions(intentionsCopy);
+  };
+
+  const handleSaturdayDropdownChange = (id) => (e) => {
+    const { value } = e.target;
+
+    const intentionsCopy = [...intentions];
+
+    const index = intentionsCopy.findIndex((intention) => intention.id === id);
+
+    const foundIntention = intentionsCopy[index];
+
+    const updatedIntention = {
+      ...foundIntention,
+      saturdayMassTime: { value, error: "" },
     };
 
     intentionsCopy[index] = updatedIntention;
@@ -217,12 +259,34 @@ export const SummaryController = ({
           bookedBy: bookedBy.bookedByName.value,
           email: bookedBy.email.value,
           phoneNumber: bookedBy.phoneNumber.value,
-          ...(massIntention.weekdayMassTime.value && {
-            weekdayMassTime: massIntention.weekdayMassTime.value,
-          }),
-          ...(massIntention.sundayMassTime.value && {
-            sundayMassTime: massIntention.sundayMassTime.value,
-          }),
+          ...(massIntention.weekdayMassTime.value &&
+            weekdayExists(
+              massIntention.startDate.value,
+              massIntention.endDate.value
+            ) && {
+              weekdayMassTime: massIntention.weekdayMassTime.value,
+            }),
+          ...(massIntention.sundayMassTime.value &&
+            sundayExists(
+              massIntention.startDate.value,
+              massIntention.endDate.value
+            ) && {
+              sundayMassTime: massIntention.sundayMassTime.value,
+            }),
+          ...(massIntention.tuesdayMassTime.value &&
+            tuesdayExists(
+              massIntention.startDate.value,
+              massIntention.endDate.value
+            ) && {
+              tuesdayMassTime: massIntention.weekdayMassTime.value,
+            }),
+          ...(massIntention.saturdayMassTime.value &&
+            saturdayExists(
+              massIntention.startDate.value,
+              massIntention.endDate.value
+            ) && {
+              saturdayMassTime: massIntention.sundayMassTime.value,
+            }),
           amountPaid: getOffering(
             massIntention.startDate.value,
             massIntention.endDate.value
@@ -281,5 +345,7 @@ export const SummaryController = ({
     openLoader,
     handleSundayDropdownChange,
     handleWeekdayDropdownChange,
+    handleTuesdayDropdownChange,
+    handleSaturdayDropdownChange,
   };
 };
