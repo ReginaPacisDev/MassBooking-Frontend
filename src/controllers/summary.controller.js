@@ -227,10 +227,6 @@ export const SummaryController = ({
 
     updatedIntention = {
       ...updatedIntention,
-      weekdayMassTime: { error: "", value: "" },
-      tuesdayMassTime: { error: "", value: "" },
-      saturdayMassTime: { error: "", value: "" },
-      sundayMassTime: { error: "", value: "" },
       [type]: { value: normalizedDate, error: updatedIntention[type].error },
     };
 
