@@ -26,7 +26,7 @@ export const tuesdayExists = (date1, date2) => {
 
   while (date1 <= date2) {
     var day = date1.getDay();
-    tuesdayFound = day === 0;
+    tuesdayFound = day === 2;
 
     if (tuesdayFound) {
       return true;
