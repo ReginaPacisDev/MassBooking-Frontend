@@ -189,7 +189,7 @@ export const massIntentions = [
   "Journey Mercies",
   "Repose of the Souls Departed",
   "Repose Of The Souls In Purgatory",
-  "God's Mercy Intervention and Favour",
+  "God's Mercy, Intervention and Favour",
   "Others (please state)",
 ];
 
