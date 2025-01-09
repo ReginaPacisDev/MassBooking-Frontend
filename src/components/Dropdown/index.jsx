@@ -42,10 +42,9 @@ const Dropdown = ({
       value={selectedValue}
       displayEmpty
       onChange={handleDropdownChange}
-      placeholder={placeholder || "Select One"}
     >
       <MenuItem value="" disabled>
-        Select A Period
+        placeholder={placeholder || "Select One"}
       </MenuItem>
       {dropdownItems.map((option) => (
         <MenuItem key={option.value} value={option.value}>

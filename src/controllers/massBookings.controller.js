@@ -224,6 +224,10 @@ export const MassBookingsController = () => {
   };
 
   useEffect(() => {
+    setSearchParams(`?type=${defaultPeriod}`);
+  }, []);
+
+  useEffect(() => {
     const updatedCount = getCount(totalForPeriod, PAGE_SIZE);
 
     setCount(updatedCount);

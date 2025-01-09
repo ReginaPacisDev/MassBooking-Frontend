@@ -110,7 +110,7 @@ const MassBookings = () => {
           />
         )}
       </div>
-      <div className="mb-5 flex justify-between items-center">
+      <div className="mb-5 md:flex justify-between items-center">
         <div className="md:flex items-center">
           <h6 className="mr-5 text-customBlue-200 font-Museo mb-5 md:mb-0">
             Filter Mass booking
@@ -123,7 +123,7 @@ const MassBookings = () => {
             />
           </div>
 
-          <div className="md:w-[160px] mb-5 md:mb-0">
+          <div className="md:w-[160px] md:mx-5 mb-5 md:mb-0">
             <Dropdown
               dropdownItems={massTimesOptions}
               selectedValue={filters.massTime}
@@ -150,9 +150,9 @@ const MassBookings = () => {
             />
           </div>
         </div>
-        <div>
+        <div className="hidden md:block">
           <button
-            className="bg-customGreen-100 text-white p-3 rounded-lg"
+            className="bg-customGreen-100 text-white p-3 rounded-lg cursor-pointer"
             onClick={handleUpdateSearchParams}
           >
             Apply Filter
@@ -168,6 +168,15 @@ const MassBookings = () => {
             handleDropdownChange={handleMassIntentionDropdownChange}
           />
         </div>
+      </div>
+
+      <div className="md:hidden mb-5">
+        <button
+          className="bg-customGreen-100 text-white p-3 rounded-lg cursor-pointer"
+          onClick={handleUpdateSearchParams}
+        >
+          Apply Filter
+        </button>
       </div>
 
       {showIntentionsOrLoader()}
