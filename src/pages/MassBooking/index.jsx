@@ -69,6 +69,36 @@ const MassBooking = () => {
                   value={intention.massIntention}
                 />
               </div>
+
+              <h3 className="text-xl mb-5">Selected Mass Times</h3>
+              <div className="lg:flex w-full justify-between lg:mb-5">
+                {intention.sundayMassTime && (
+                  <DisabledInputContainer
+                    label="Sunday Mass Time"
+                    value={intention?.sundayMassTime || "N/A"}
+                  />
+                )}
+                {intention.weekdayMassTime && (
+                  <DisabledInputContainer
+                    label="Weekday Mass Time"
+                    value={intention.weekdayMassTime || "N/A"}
+                  />
+                )}
+              </div>
+              <div className="lg:flex w-full justify-between lg:mb-5">
+                {intention.tuesdayMassTime && (
+                  <DisabledInputContainer
+                    label="Tuesday Mass Time"
+                    value={intention?.tuesdayMassTime || "N/A"}
+                  />
+                )}
+                {intention.saturdayMassTime && (
+                  <DisabledInputContainer
+                    label="Saturday Mass Time"
+                    value={intention.saturdayMassTime || "N/A"}
+                  />
+                )}
+              </div>
             </div>
           ) : (
             renderNotFound()
