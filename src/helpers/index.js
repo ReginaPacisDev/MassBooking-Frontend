@@ -185,8 +185,8 @@ export const massIntentions = [
   "Wedding Anniversary Thanksgiving",
   "Special Intentions",
   "God's Blessings, Guidance and Protection",
-  "Divine Healing",
-  "Journey Mercies",
+  "God's Mercy and Healing",
+  "Journey Mercies And God's Protection",
   "Repose of the Souls Departed",
   "Repose Of The Souls In Purgatory",
   "God's Mercy, Intervention and Favour",
@@ -447,6 +447,42 @@ export const adminFilterOptions = [
     value: "month",
   },
 ];
+
+export const massTimesOptions = [
+  {
+    label: "06:30am",
+    value: "06:30am",
+  },
+  {
+    label: "08:20am",
+    value: "08:20am",
+  },
+  {
+    label: "10:40am",
+    value: "10:40am",
+  },
+  {
+    label: "06:00pm",
+    value: "06:00pm",
+  },
+  {
+    label: "12:30pm",
+    value: "12:30pm",
+  },
+  {
+    label: "06:30pm",
+    value: "06:30pm",
+  },
+  {
+    label: "07:00am",
+    value: "07:00am",
+  },
+];
+
+export const massIntentionsOptions = massIntentions.map((item) => ({
+  label: item,
+  value: item,
+}));
 
 export const formatTime = (date, format) => {
   if (typeof date === "number") {
