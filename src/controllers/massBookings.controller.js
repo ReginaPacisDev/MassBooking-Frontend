@@ -20,18 +20,23 @@ const PAGE_SIZE = 10;
 const defaultPeriod = "month";
 
 export const MassBookingsController = () => {
-  const [selectedPeriod, setSelectedPeriod] = useState(defaultPeriod);
   const [pageNumber, setPageNumber] = useState(1);
   const [startIndex, setStartIndex] = useState(0);
   const [intentions, setIntentions] = useState([]);
   const [totalForPeriod, setTotalForPeriod] = useState(0);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
   const [search, setSearch] = useState("");
-  const [usedPeriod, setUsedPeriod] = useState();
+  const [searchParams, setSearchParams] = useState();
   const [openLoader, setOpenLoader] = useState(true);
   const [count, setCount] = useState(0);
   const [openExportLoader, setOpenExportLoader] = useState(false);
+
+  const [filters, setFilters] = useState({
+    startDate: null,
+    endDate: null,
+    massIntention: "",
+    massTime: "",
+    selectedPeriod: defaultPeriod,
+  });
 
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
@@ -44,19 +49,47 @@ export const MassBookingsController = () => {
     const normalizedDate = newDate.utc().tz(TIMEZONE);
 
     if (type === "startDate") {
-      setStartDate(normalizedDate);
-      setEndDate(null);
+      setFilters({
+        ...filters,
+        startDate: normalizedDate,
+        endDate: null,
+        selectedPeriod: "",
+      });
     } else {
-      setEndDate(normalizedDate);
+      setFilters({
+        ...filters,
+        endDate: normalizedDate,
+      });
     }
   };
 
-  const handleDropdownChange = (e) => {
+  const handlePeriodDropdownChange = (e) => {
     const newValue = e.target.value;
 
-    setSelectedPeriod(newValue);
-    setStartDate(null);
-    setEndDate(null);
+    setFilters({
+      ...filters,
+      startDate: null,
+      endDate: null,
+      selectedPeriod: newValue,
+    });
+  };
+
+  const handleMassTimeDropdownChange = (e) => {
+    const newValue = e.target.value;
+
+    setFilters({
+      ...filters,
+      massTime: newValue,
+    });
+  };
+
+  const handleMassIntentionDropdownChange = (e) => {
+    const newValue = e.target.value;
+
+    setFilters({
+      ...filters,
+      massIntention: newValue,
+    });
   };
 
   const handleInputChange = (e) => {
@@ -70,14 +103,14 @@ export const MassBookingsController = () => {
   };
 
   const handleGetIntentions = useCallback(async () => {
-    if (usedPeriod) {
+    if (searchParams) {
       try {
         setOpenLoader(true);
 
         const {
           data: { bookings, total },
         } = await axios.get(
-          `${import.meta.env.VITE_APP_API_URL}/bookings${usedPeriod}&skip=${
+          `${import.meta.env.VITE_APP_API_URL}/bookings${searchParams}&skip=${
             startIndex * PAGE_SIZE
           }&limit=${PAGE_SIZE}`,
           {
@@ -109,7 +142,7 @@ export const MassBookingsController = () => {
         );
       }
     }
-  }, [enqueueSnackbar, startIndex, usedPeriod]);
+  }, [enqueueSnackbar, startIndex, searchParams]);
 
   const handleExportToExcel = async () => {
     try {
@@ -117,7 +150,7 @@ export const MassBookingsController = () => {
       const {
         data: { bookings },
       } = await axios.get(
-        `${import.meta.env.VITE_APP_API_URL}/bookings${usedPeriod}`,
+        `${import.meta.env.VITE_APP_API_URL}/bookings${searchParams}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem(ADMIN_ACCESS_TOKEN)}`,
@@ -196,41 +229,52 @@ export const MassBookingsController = () => {
     setCount(updatedCount);
   }, [totalForPeriod]);
 
-  useEffect(() => {
-    if (selectedPeriod) {
-      setStartDate(null);
-      setEndDate(null);
-      setStartIndex(0);
-      setSearch("");
-      setUsedPeriod(`?type=${selectedPeriod}`);
+  const handleUpdateSearchParams = () => {
+    setSearch("");
+
+    const validPropertyExists = Object.values(filters).some((val) =>
+      [null, undefined, ""].includes(val)
+    );
+
+    if (!validPropertyExists) return;
+
+    let filtersToParamString = "";
+
+    if (filters.selectedPeriod) {
+      filtersToParamString += `?type=${filters.selectedPeriod}`;
     }
-  }, [selectedPeriod]);
 
-  useEffect(() => {
-    if (![startDate, endDate].includes(null)) {
-      setSelectedPeriod("");
-      setStartIndex(0);
-      setSearch("");
-
+    if (![filters.startDate, filters.endDate].includes(null)) {
       const format = "DD-MM-YYYY";
 
-      const normalizedStartDate = formatTime(startDate, format);
-      const normalizedEndDate = formatTime(endDate, format);
+      const normalizedStartDate = formatTime(filters.startDate, format);
+      const normalizedEndDate = formatTime(filters.endDate, format);
 
-      setUsedPeriod(
-        `?startDate=${normalizedStartDate}&endDate=${normalizedEndDate}`
-      );
+      filtersToParamString = `?startDate=${normalizedStartDate}&endDate=${normalizedEndDate}`;
     }
-  }, [startDate, endDate]);
+
+    if (filters.massIntention) {
+      filtersToParamString += `&massIntention=${filters.massIntention}`;
+    }
+
+    if (filters.massTime) {
+      filtersToParamString += `&massTime=${filters.massTime}`;
+    }
+
+    setSearchParams(filtersToParamString);
+  };
 
   useEffect(() => {
     if (search) {
-      setStartDate(null);
-      setEndDate(null);
-      setStartIndex(0);
-      setSelectedPeriod("");
+      setFilters({
+        startDate: null,
+        endDate: null,
+        massIntention: "",
+        massTime: "",
+        selectedPeriod: "",
+      });
 
-      setUsedPeriod(`?name=${search}`);
+      setSearchParams(`?name=${search}`);
     }
   }, [search]);
 
@@ -243,13 +287,10 @@ export const MassBookingsController = () => {
   }, [handleGetIntentions]);
 
   return {
-    selectedPeriod,
     updatePageNumber,
     pageNumber,
     handleExportToExcel,
-    handleDropdownChange,
-    startDate,
-    endDate,
+    handlePeriodDropdownChange,
     handleDateChange,
     search,
     handleInputChange,
@@ -259,5 +300,9 @@ export const MassBookingsController = () => {
     openLoader,
     count,
     openExportLoader,
+    filters,
+    handleMassTimeDropdownChange,
+    handleMassIntentionDropdownChange,
+    handleUpdateSearchParams,
   };
 };

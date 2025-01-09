@@ -4,7 +4,11 @@ import { styled } from "@mui/material/styles";
 import DatePicker from "../../components/Datepicker";
 import ExportButton from "../../components/ExportButton";
 import SearchBar from "../../components/SearchBar";
-import { adminFilterOptions } from "../../helpers";
+import {
+  adminFilterOptions,
+  massTimesOptions,
+  massIntentionsOptions,
+} from "../../helpers";
 import { AdminPageLoader } from "../../components/Loader";
 import IntentionsTable from "../../components/IntentionsTable";
 import AppPagination from "../../components/Pagination";
@@ -21,13 +25,10 @@ const StyledBox = styled(Box)`
 
 const MassBookings = () => {
   const {
-    selectedPeriod,
     updatePageNumber,
     pageNumber,
     handleExportToExcel,
-    handleDropdownChange,
-    startDate,
-    endDate,
+    handlePeriodDropdownChange,
     handleDateChange,
     search,
     handleInputChange,
@@ -36,6 +37,10 @@ const MassBookings = () => {
     openLoader,
     count,
     openExportLoader,
+    handleMassTimeDropdownChange,
+    handleMassIntentionDropdownChange,
+    handleUpdateSearchParams,
+    filters,
   } = MassBookingsController();
 
   const showIntentionsOrLoader = () => {
@@ -105,34 +110,62 @@ const MassBookings = () => {
           />
         )}
       </div>
-      <div className="md:flex items-center mb-10">
-        <h6 className="mr-5 text-customBlue-200 font-Museo mb-5 md:mb-0">
-          Filter Mass booking
-        </h6>
-        <div className="md:w-[160px] mb-5 md:mb-0">
-          <Dropdown
-            dropdownItems={adminFilterOptions}
-            selectedValue={selectedPeriod}
-            handleDropdownChange={handleDropdownChange}
-          />
-        </div>
+      <div className="mb-5 flex justify-between items-center">
+        <div className="md:flex items-center">
+          <h6 className="mr-5 text-customBlue-200 font-Museo mb-5 md:mb-0">
+            Filter Mass booking
+          </h6>
+          <div className="md:w-[160px] mb-5 md:mb-0">
+            <Dropdown
+              dropdownItems={adminFilterOptions}
+              selectedValue={filters.selectedPeriod}
+              handleDropdownChange={handlePeriodDropdownChange}
+            />
+          </div>
 
-        <div className="md:w-[160px] md:ml-5 mb-5 md:mb-0">
-          <DatePicker
-            addBorder="true"
-            value={startDate}
-            placeholder="Start Date"
-            handleChange={handleDateChange("startDate")}
-          />
+          <div className="md:w-[160px] mb-5 md:mb-0">
+            <Dropdown
+              dropdownItems={massTimesOptions}
+              selectedValue={filters.massTime}
+              handleDropdownChange={handleMassTimeDropdownChange}
+            />
+          </div>
+
+          <div className="md:w-[160px] md:ml-5 mb-5 md:mb-0">
+            <DatePicker
+              addBorder="true"
+              value={filters.startDate}
+              placeholder="Start Date"
+              handleChange={handleDateChange("startDate")}
+            />
+          </div>
+          <div className="md:w-[160px] md:ml-5 mb-5 md:mb-0">
+            <DatePicker
+              addBorder="true"
+              value={filters.endDate}
+              placeholder="End Date"
+              minDate={filters.startDate}
+              disabled={filters.startDate === null}
+              handleChange={handleDateChange("endDate")}
+            />
+          </div>
         </div>
-        <div className="md:w-[160px] md:ml-5 mb-5 md:mb-0">
-          <DatePicker
-            addBorder="true"
-            value={endDate}
-            placeholder="End Date"
-            minDate={startDate}
-            disabled={startDate === null}
-            handleChange={handleDateChange("endDate")}
+        <div>
+          <button
+            className="bg-customGreen-100 text-white p-3 rounded-lg"
+            onClick={handleUpdateSearchParams}
+          >
+            Apply Filter
+          </button>
+        </div>
+      </div>
+
+      <div className="md:flex items-center mb-10">
+        <div className="md:w-[500px] mb-5 md:mb-0">
+          <Dropdown
+            dropdownItems={massIntentionsOptions}
+            selectedValue={filters.massIntention}
+            handleDropdownChange={handleMassIntentionDropdownChange}
           />
         </div>
       </div>

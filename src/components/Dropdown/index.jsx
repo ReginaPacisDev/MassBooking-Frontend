@@ -31,14 +31,22 @@ export const StyledDropdown = styled(Select)`
   }
 `;
 
-const Dropdown = ({ dropdownItems, selectedValue, handleDropdownChange }) => {
+const Dropdown = ({
+  dropdownItems,
+  selectedValue,
+  handleDropdownChange,
+  placeholder,
+}) => {
   return (
     <StyledDropdown
       value={selectedValue}
       displayEmpty
       onChange={handleDropdownChange}
+      placeholder={placeholder || "Select One"}
     >
-      <MenuItem value="" disabled>Select A Period</MenuItem>
+      <MenuItem value="" disabled>
+        Select A Period
+      </MenuItem>
       {dropdownItems.map((option) => (
         <MenuItem key={option.value} value={option.value}>
           {option.label}
