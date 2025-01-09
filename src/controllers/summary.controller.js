@@ -254,8 +254,8 @@ export const SummaryController = ({
           massIntention:
             massIntention.textAreaIntention.value ||
             massIntention.massIntention.value,
-          startDate: massIntention.startDate.value.unix(),
-          endDate: massIntention.endDate.value.unix(),
+          startDate: massIntention.startDate.value.utc(true).unix(),
+          endDate: massIntention.endDate.value.utc(true).unix(),
           bookedBy: bookedBy.bookedByName.value,
           email: bookedBy.email.value,
           phoneNumber: bookedBy.phoneNumber.value,
