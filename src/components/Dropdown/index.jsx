@@ -44,7 +44,7 @@ const Dropdown = ({
       onChange={handleDropdownChange}
     >
       <MenuItem value="" disabled>
-        placeholder={placeholder || "Select One"}
+        {placeholder || "Select One"}
       </MenuItem>
       {dropdownItems.map((option) => (
         <MenuItem key={option.value} value={option.value}>
