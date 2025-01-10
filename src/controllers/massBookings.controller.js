@@ -248,9 +248,14 @@ export const MassBookingsController = () => {
       filtersToParamString += `?type=${filters.selectedPeriod}`;
     }
 
-    if (![filters.startDate, filters.endDate].includes(null)) {
-      const format = "DD-MM-YYYY";
+    const format = "DD-MM-YYYY";
 
+    if (filters.startDate !== null && filters.endDate === null) {
+      const normalizedStartDate = formatTime(filters.startDate, format);
+      filtersToParamString = `?date=${normalizedStartDate}`;
+    }
+
+    if (![filters.startDate, filters.endDate].includes(null)) {
       const normalizedStartDate = formatTime(filters.startDate, format);
       const normalizedEndDate = formatTime(filters.endDate, format);
 
