@@ -77,7 +77,7 @@ const ManagePayments = () => {
           <div className="w-full md:w-[160px] mt-5 md:mt-0 ml-3">
             <DatePicker
               addBorder="true"
-              value={filters.createdBy}
+              value={filters.startDate}
               placeholder="Date"
               handleChange={handleDateChange}
             />
