@@ -160,8 +160,8 @@ const MassBookings = () => {
         </div>
       </div>
 
-      <div className="md:flex items-center mb-10">
-        <div className="md:w-[500px] mb-5 md:mb-0">
+      <div className="md:flex items-center mb-5 md:mb-10">
+        <div className="md:w-[500px]">
           <Dropdown
             dropdownItems={massIntentionsOptions}
             selectedValue={filters.massIntention}
@@ -170,7 +170,7 @@ const MassBookings = () => {
         </div>
       </div>
 
-      <div className="md:hidden mb-5">
+      <div className="md:hidden mb-10">
         <button
           className="bg-customGreen-100 text-white p-3 rounded-lg cursor-pointer"
           onClick={handleUpdateSearchParams}
