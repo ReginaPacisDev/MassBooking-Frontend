@@ -64,7 +64,7 @@ const Dashboard = () => {
           {latestBookings.length ? (
             <div className="lg:w-[45%] p-5 lg:px-10 bg-white">
               <div className="flex justify-between mb-10">
-                <h2 className="lg:text-2xl">Mass Booking Intention</h2>
+                <h2 className="lg:text-2xl">Mass Booking Intentions</h2>
                 <Link className="text-customGreen-100" to="/admin/massBookings">
                   View all
                 </Link>
