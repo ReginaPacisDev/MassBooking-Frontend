@@ -72,7 +72,7 @@ export const ManagePaymentsController = () => {
 
     setFilters({
       ...filters,
-      massTime: newValue,
+      createdBy: newValue,
     });
   };
 
