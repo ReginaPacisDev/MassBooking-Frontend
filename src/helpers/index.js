@@ -449,6 +449,7 @@ export const adminFilterOptions = [
 ];
 
 export const createdByOptions = [
+  { label: "All", value: "All" },
   {
     label: "User",
     value: "User",
