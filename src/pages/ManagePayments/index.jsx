@@ -1,6 +1,6 @@
 import PaymentHeaderStat from "../../components/PaymentHeaderStat";
 import Dropdown from "../../components/Dropdown";
-import { adminFilterOptions } from "../../helpers";
+import { adminFilterOptions, createdByOptions } from "../../helpers";
 import { ManagePaymentsController } from "../../controllers";
 import DatePicker from "../../components/Datepicker";
 import PaymentStat from "../../components/PaymentStat";
@@ -11,9 +11,8 @@ import AppPagination from "../../components/Pagination";
 const ManagePayments = () => {
   const {
     intentions,
-    selectedPeriod,
     handleDropdownChange,
-    startDate,
+    filters,
     handleDateChange,
     totalAmountPaidForPeriod,
     totalAmountPaid,
@@ -22,6 +21,8 @@ const ManagePayments = () => {
     updatePageNumber,
     pageNumber,
     openLoader,
+    handleCreatedByDropdownChange,
+    handleUpdateSearchParams,
   } = ManagePaymentsController();
 
   if (openLoader) {
@@ -52,27 +53,43 @@ const ManagePayments = () => {
           value={totalAmountPaid}
         />
       </div>
+      <div className="flex justify-between items-center mb-10 mt-10">
+        <div className="md:flex items-center mb-5">
+          <h6 className="hidden lg:block mr-5 text-customBlue-200 font-Museo">
+            Filter Payments
+          </h6>
+          <div className="w-full md:w-[160px] mt-5 md:mt-0">
+            <Dropdown
+              dropdownItems={adminFilterOptions}
+              selectedValue={filters.selectedPeriod}
+              handleDropdownChange={handleDropdownChange}
+            />
+          </div>
 
-      <div className="flex items-center mb-10 mt-10">
-        <h6 className="hidden lg:block mr-5 text-customBlue-200 font-Museo">
-          Filter Payments
-        </h6>
-        <div className="w-[160px]">
-          <Dropdown
-            dropdownItems={adminFilterOptions}
-            selectedValue={selectedPeriod}
-            handleDropdownChange={handleDropdownChange}
-          />
+          <div className="w-full md:w-[160px] mt-5 md:mt-0 ml-3">
+            <Dropdown
+              dropdownItems={createdByOptions}
+              selectedValue={filters.createdBy}
+              handleDropdownChange={handleCreatedByDropdownChange}
+            />
+          </div>
+
+          <div className="w-full md:w-[160px] mt-5 md:mt-0 ml-3">
+            <DatePicker
+              addBorder="true"
+              value={filters.createdBy}
+              placeholder="Date"
+              handleChange={handleDateChange}
+            />
+          </div>
         </div>
 
-        <div className="w-[300px] ml-5">
-          <DatePicker
-            addBorder="true"
-            value={startDate}
-            placeholder="Date"
-            handleChange={handleDateChange}
-          />
-        </div>
+        <button
+          className="bg-customGreen-100 text-white p-3 rounded-lg cursor-pointer"
+          onClick={handleUpdateSearchParams}
+        >
+          Apply Filter
+        </button>
       </div>
 
       {intentions.length === 0 ? (

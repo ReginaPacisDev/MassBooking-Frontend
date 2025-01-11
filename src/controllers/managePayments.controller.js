@@ -16,18 +16,22 @@ const PAGE_SIZE = 9;
 const defaultPeriod = "day";
 
 export const ManagePaymentsController = () => {
-  const [selectedPeriod, setSelectedPeriod] = useState(defaultPeriod);
   const [pageNumber, setPageNumber] = useState(1);
   const [startIndex, setStartIndex] = useState(0);
   const [intentions, setIntentions] = useState([]);
-  const [startDate, setStartDate] = useState(null);
-  const [usedPeriod, setUsedPeriod] = useState();
   const [openLoader, setOpenLoader] = useState(true);
   const [count, setCount] = useState(0);
+  const [searchParams, setSearchParams] = useState();
   const [totalForPeriod, setTotalForPeriod] = useState(0);
   const [totalAmountPaidForPeriod, setTotalAmountPaidForPeriod] = useState(0);
   const [totalAmountPaid, setTotalAmountPaid] = useState(0);
   const [totalBookingsForPeriod, setTotalBookingsForPeriod] = useState(0);
+
+  const [filters, setFilters] = useState({
+    selectedPeriod: defaultPeriod,
+    startDate: null,
+    createdBy: "",
+  });
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -37,15 +41,15 @@ export const ManagePaymentsController = () => {
 
   const handleDateChange = (newDate) => {
     const normalizedDate = newDate.utc().tz(TIMEZONE);
-    setStartDate(normalizedDate);
-    setSelectedPeriod("");
+
+    setFilters({ ...filters, startDate: normalizedDate, selectedPeriod: "" });
     setStartIndex(0);
   };
 
   const handleDropdownChange = (e) => {
     const newValue = e.target.value;
-    setSelectedPeriod(newValue);
-    setStartDate(null);
+    setFilters({ ...filters, startDate: null, selectedPeriod: newValue });
+
     setStartIndex(0);
   };
 
@@ -54,29 +58,53 @@ export const ManagePaymentsController = () => {
   }, [startIndex]);
 
   useEffect(() => {
-    if (selectedPeriod) {
-      setUsedPeriod(`?type=${selectedPeriod}`);
-    }
-  }, [selectedPeriod]);
-
-  useEffect(() => {
-    if (startDate !== null) {
-      const format = "DD-MM-YYYY";
-
-      const normalizedStartDate = formatTime(startDate, format);
-
-      setUsedPeriod(`?date=${normalizedStartDate}`);
-    }
-  }, [startDate]);
-
-  useEffect(() => {
     const updatedCount = getCount(totalForPeriod, PAGE_SIZE);
 
     setCount(updatedCount);
   }, [totalForPeriod]);
 
+  useEffect(() => {
+    setSearchParams(`?type=${defaultPeriod}`);
+  }, []);
+
+  const handleCreatedByDropdownChange = (e) => {
+    const newValue = e.target.value;
+
+    setFilters({
+      ...filters,
+      massTime: newValue,
+    });
+  };
+
+  const handleUpdateSearchParams = () => {
+    const validPropertyExists = Object.values(filters).some((val) =>
+      [null, undefined, ""].includes(val)
+    );
+
+    if (!validPropertyExists) return;
+
+    let filtersToParamString = "";
+
+    if (filters.selectedPeriod) {
+      filtersToParamString += `?type=${filters.selectedPeriod}`;
+    }
+
+    const format = "DD-MM-YYYY";
+
+    if (filters.startDate !== null) {
+      const normalizedStartDate = formatTime(filters.startDate, format);
+      filtersToParamString = `?date=${normalizedStartDate}`;
+    }
+
+    if (filters.createdBy) {
+      filtersToParamString += `&createdBy=${filters.createdBy}`;
+    }
+
+    setSearchParams(filtersToParamString);
+  };
+
   const handleGetStats = useCallback(async () => {
-    if (usedPeriod) {
+    if (searchParams) {
       try {
         setOpenLoader(true);
 
@@ -91,7 +119,7 @@ export const ManagePaymentsController = () => {
         } = await axios.get(
           `${
             import.meta.env.VITE_APP_API_URL
-          }/bookings/stats${usedPeriod}&skip=${
+          }/bookings/stats${searchParams}&skip=${
             startIndex * PAGE_SIZE
           }&limit=${PAGE_SIZE}`,
           {
@@ -125,7 +153,7 @@ export const ManagePaymentsController = () => {
         );
       }
     }
-  }, [enqueueSnackbar, startIndex, usedPeriod]);
+  }, [enqueueSnackbar, startIndex, searchParams]);
 
   useEffect(() => {
     handleGetStats();
@@ -133,16 +161,17 @@ export const ManagePaymentsController = () => {
 
   return {
     openLoader,
-    selectedPeriod,
+    filters,
     intentions,
     count,
     updatePageNumber,
     pageNumber,
     handleDropdownChange,
-    startDate,
     handleDateChange,
     totalAmountPaidForPeriod,
     totalAmountPaid,
     totalBookingsForPeriod,
+    handleUpdateSearchParams,
+    handleCreatedByDropdownChange,
   };
 };

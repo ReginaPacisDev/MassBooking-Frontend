@@ -448,6 +448,17 @@ export const adminFilterOptions = [
   },
 ];
 
+export const createdByOptions = [
+  {
+    label: "User",
+    value: "User",
+  },
+  {
+    label: "Admin",
+    value: "Admin",
+  },
+];
+
 export const massTimesOptions = [
   {
     label: "06:30am",
