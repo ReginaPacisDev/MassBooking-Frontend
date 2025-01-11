@@ -187,7 +187,7 @@ export const massIntentions = [
   "God's Blessings, Guidance and Protection",
   "God's Mercy and Healing",
   "Journey Mercies And God's Protection",
-  "Repose of the Souls Departed",
+  "Repose Of the Souls Departed",
   "Repose Of The Souls In Purgatory",
   "God's Mercy, Intervention and Favour",
   "Others (please state)",
@@ -479,10 +479,14 @@ export const massTimesOptions = [
   },
 ];
 
-export const massIntentionsOptions = massIntentions.map((item) => ({
-  label: item,
-  value: item,
-}));
+export const massIntentionsOptions = massIntentions.map((item) => {
+  const label = item === "Others (please state)" ? "Others" : item;
+
+  return {
+    label,
+    value: item,
+  };
+});
 
 export const formatTime = (date, format) => {
   if (typeof date === "number") {

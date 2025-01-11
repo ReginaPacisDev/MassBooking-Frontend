@@ -50,17 +50,17 @@ const TopSection = () => {
         <OfficeInfo imgUrl={BoxIcon} imgAlt="Box">
           <div>
             <Text text="Office Hours:" />
-            <Text text="Monday-Friday: 9am-6pm" />
-            <Text text="Sundays: 8am-12noon" />
+            <Text text="Monday – Friday (Except on Thursday): 9am – 5pm" />
+            <Text text="Priest Consulting Hours: Mon-Wed & Fri - 9am - 2pm" />
           </div>
         </OfficeInfo>
 
         <OfficeInfo imgUrl={EmailIcon} imgAlt="Email">
-          <Text text="Email: info@reginapaciscc.org" />
+          <Text text="Email: reginapaciscatholicchurch@yahoo.com" />
         </OfficeInfo>
 
         <OfficeInfo imgUrl={PhoneIcon} imgAlt="Phone">
-          <Text text="Phone: +2348136952196" />
+          <Text text="Phone: 08136952196" />
         </OfficeInfo>
       </Segment>
     </div>
