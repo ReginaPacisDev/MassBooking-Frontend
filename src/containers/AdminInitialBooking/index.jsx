@@ -4,7 +4,7 @@ import Intention from "../../components/Intention";
 
 const AdminInitialBooking = ({
   intention,
-  canUseNextDayDate,
+  minDate,
   bookedByDetails,
   handleIntentionInputChange,
   handleBookedByInputChange,
@@ -50,7 +50,7 @@ const AdminInitialBooking = ({
         endDate={endDate}
         handleDateChange={handleDateChange}
         textAreaPlaceholder="Write the prayer request *"
-        canUseNextDayDate={canUseNextDayDate}
+        minDate={minDate}
         sundayMassTime={sundayMassTime}
         weekdayMassTime={weekdayMassTime}
         tuesdayMassTime={tuesdayMassTime}

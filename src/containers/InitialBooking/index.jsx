@@ -5,7 +5,7 @@ import Intention from "../../components/Intention";
 
 const InitialBooking = ({
   intention,
-  canUseNextDayDate,
+  minDate,
   bookedByDetails,
   handleIntentionInputChange,
   handleBookedByInputChange,
@@ -64,7 +64,7 @@ const InitialBooking = ({
         tuesdayMassTime={tuesdayMassTime}
         saturdayMassTime={saturdayMassTime}
         handleDateChange={handleDateChange}
-        canUseNextDayDate={canUseNextDayDate}
+        minDate={minDate}
         handleSundayDropdownChange={handleSundayDropdownChange}
         handleWeekdayDropdownChange={handleWeekdayDropdownChange}
         handleTuesdayDropdownChange={handleTuesdayDropdownChange}

@@ -18,7 +18,9 @@ export const BookingController = (admin) => {
 
   const [intention, setIntention] = useState(createIntention());
 
-  const [canUseNextDayDate, setCanUseNextDayDate] = useState(true);
+  const [minDate, setMinDate] = useState(
+    moment().utc().tz(TIMEZONE).add(1, "days").toDate()
+  );
 
   const handleIntentionInputChange = (e) => {
     let { name, value } = e.target;
@@ -170,17 +172,36 @@ export const BookingController = (admin) => {
 
   useInterval(() => {
     const currentTime = moment().tz(TIMEZONE);
+    const currentDay = currentTime.day();
+    const currentTimeInMinutes =
+      currentTime.hours() * 60 + currentTime.minutes();
+    const cutOffTimeInMinutes = 14 * 60;
 
-    if (
-      currentTime.isAfter(moment("14:00:00", "HH:mm:ss").utc().tz(TIMEZONE))
-    ) {
-      setCanUseNextDayDate(false);
-    }
+    const cannotBookMass = currentTimeInMinutes > cutOffTimeInMinutes;
+
+    const dayOffsets = {
+      0: 2,
+      1: cannotBookMass ? 2 : 1,
+      2: cannotBookMass ? 2 : 1,
+      3: cannotBookMass ? 3 : 1,
+      4: 2,
+      5: cannotBookMass ? 4 : 1,
+      6: 3,
+    };
+
+    const daysToAdd = dayOffsets[currentDay];
+
+    const minimumDate = currentTime
+      .clone()
+      .add(daysToAdd, "days")
+      .startOf("day")
+      .toDate();
+
+    setMinDate(minimumDate);
   }, 1000);
 
   return {
     intention,
-    canUseNextDayDate,
     bookedByDetails,
     handleIntentionInputChange,
     handleBookedByInputChange,
@@ -198,5 +219,6 @@ export const BookingController = (admin) => {
     handleWeekdayDropdownChange,
     handleTuesdayDropdownChange,
     handleSaturdayDropdownChange,
+    minDate,
   };
 };

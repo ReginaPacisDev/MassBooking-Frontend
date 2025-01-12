@@ -17,7 +17,7 @@ import {
 const Summary = ({
   intentions,
   bookedBy,
-  canUseNextDayDate,
+  minDate,
   setIntentions,
   handleNext,
   handleBookedByInputChange,
@@ -114,7 +114,7 @@ const Summary = ({
               index={index}
               handleDeleteIntention={handleDeleteIntention}
               intentions={intentions}
-              canUseNextDayDate={canUseNextDayDate}
+              minDate={minDate}
               handleSundayDropdownChange={handleSundayDropdownChange}
               handleWeekdayDropdownChange={handleWeekdayDropdownChange}
               handleTuesdayDropdownChange={handleTuesdayDropdownChange}
