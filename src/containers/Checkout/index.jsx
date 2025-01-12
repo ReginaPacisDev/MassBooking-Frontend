@@ -14,7 +14,7 @@ const Checkout = ({
   intention,
   intentions,
   bookedByDetails,
-  canUseNextDayDate,
+  minDate,
   handleIntentionInputChange,
   handleBookedByInputChange,
   handleDateChange,
@@ -117,7 +117,7 @@ const Checkout = ({
           toggleExpanded={toggleExpanded}
         >
           <Summary
-            canUseNextDayDate={canUseNextDayDate}
+            minDate={minDate}
             intentions={intentions}
             bookedBy={bookedByDetails}
             handleNext={handleNext}

@@ -8,9 +8,9 @@ import { BookingController } from "../../controllers";
 export default function Booking() {
   const {
     intention,
-    canUseNextDayDate,
     intentions,
     bookedByDetails,
+    minDate,
     handleIntentionInputChange,
     handleBookedByInputChange,
     handleDateChange,
@@ -40,7 +40,7 @@ export default function Booking() {
             handleDateChange={handleDateChange}
             handleSave={handleSave}
             handleCancel={handleReset}
-            canUseNextDayDate={canUseNextDayDate}
+            minDate={minDate}
             handleSundayDropdownChange={handleSundayDropdownChange}
             handleWeekdayDropdownChange={handleWeekdayDropdownChange}
             handleTuesdayDropdownChange={handleTuesdayDropdownChange}
@@ -52,7 +52,7 @@ export default function Booking() {
             intention={intention}
             intentions={intentions}
             bookedByDetails={bookedByDetails}
-            canUseNextDayDate={canUseNextDayDate}
+            minDate={minDate}
             handleIntentionInputChange={handleIntentionInputChange}
             handleBookedByInputChange={handleBookedByInputChange}
             handleDateChange={handleDateChange}

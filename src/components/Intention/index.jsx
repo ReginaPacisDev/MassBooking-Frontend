@@ -1,4 +1,3 @@
-import moment from "moment-timezone";
 import DatePicker from "../Datepicker";
 import Input from "../Input";
 import InputContainer from "../InputContainer";
@@ -10,7 +9,6 @@ import {
   weekdayMasses,
   saturdayMasses,
   tuesdayMasses,
-  TIMEZONE,
   massIntentions,
 } from "../../helpers";
 
@@ -22,7 +20,7 @@ const Intention = ({
   handleChange,
   handleDateChange,
   textAreaPlaceholder,
-  canUseNextDayDate,
+  minDate,
   sundayMassTime,
   weekdayMassTime,
   tuesdayMassTime,
@@ -36,8 +34,6 @@ const Intention = ({
 }) => {
   const { sundayFound, weekdayFound, saturdayFound, tuesdayFound } =
     IntentionController(startDate, endDate);
-
-  const momentTimeZone = moment().utc().tz(TIMEZONE);
 
   return (
     <div className="pt-4">
@@ -90,11 +86,7 @@ const Intention = ({
             value={startDate.value}
             handleChange={handleDateChange("startDate")}
             placeholder="Start Date"
-            minDate={
-              canUseNextDayDate
-                ? momentTimeZone.add(1, "days").toDate()
-                : momentTimeZone.add(2, "days").toDate()
-            }
+            minDate={minDate}
             addborderbottom="true"
           />
         </InputContainer>

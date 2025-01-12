@@ -1,5 +1,4 @@
 import converter from "number-to-words";
-import moment from "moment-timezone";
 
 import SectionHeader from "../SectionHeader";
 import DisabledInput from "../DisabledInput";
@@ -15,7 +14,6 @@ import {
   tuesdayMasses,
   saturdayMasses,
   massIntentions,
-  TIMEZONE,
 } from "../../helpers";
 import { IntentionController } from "../../controllers/intention.controller";
 import InputSelect from "../InputSelect";
@@ -27,7 +25,7 @@ const Item = ({
   index,
   handleDeleteIntention,
   intentions,
-  canUseNextDayDate,
+  minDate,
   handleSundayDropdownChange,
   handleWeekdayDropdownChange,
   handleTuesdayDropdownChange,
@@ -35,8 +33,6 @@ const Item = ({
 }) => {
   const { sundayFound, weekdayFound, saturdayFound, tuesdayFound } =
     IntentionController(intention.startDate, intention.endDate);
-
-  const momentTimeZone = moment().utc().tz(TIMEZONE);
 
   const offering = getOffering(
     intention.startDate.value,
@@ -98,11 +94,7 @@ const Item = ({
               value={intention.startDate.value}
               handleChange={handleDateChange(intention.id)("startDate")}
               placeholder="Start Date"
-              minDate={
-                canUseNextDayDate
-                  ? momentTimeZone.add(1, "days").toDate()
-                  : momentTimeZone.add(2, "days").toDate()
-              }
+              minDate={minDate}
               addborderbottom="true"
             />
           </Editable>
