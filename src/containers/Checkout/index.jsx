@@ -92,6 +92,7 @@ const Checkout = ({
               massIntention={massIntention}
               startDate={startDate}
               endDate={endDate}
+              minDate={minDate}
               sundayMassTime={sundayMassTime}
               weekdayMassTime={weekdayMassTime}
               tuesdayMassTime={tuesdayMassTime}
