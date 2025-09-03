@@ -29,7 +29,7 @@ export const StyledTabs = styled(Tabs)`
     display: none;
   }
 `;
-
+//
 const Settings = () => {
   const { value, isSuperAdmin, handleChange } = SettingsController();
 
